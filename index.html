@@ -7,447 +7,438 @@
 <meta name="description" content="Fiona Hoang, software engineer. AI infrastructure at Huawei Canada, research engineering at the University of Toronto. Computer Science and Psychology.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Schibsted+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --paper: #F7F6FB;
-    --card: #FFFFFF;
-    --ink: #1D1B2B;
-    --muted: #5E5B70;
-    --rule: #E2DFEC;
-    --indigo: #4A3FCF;  --indigo-soft: #E7E4FB;
-    --matcha: #4F7A22;  --matcha-soft: #E2EDCD;
-    --peach: #C4532C;   --peach-soft: #FCE1D4;
-    --sky: #2A6FAE;     --sky-soft: #DAEAF8;
-    --butter: #8A6A00;  --butter-soft: #FBEDC2;
-    --tape: rgba(244, 201, 93, 0.55);
-    --shadow: 0 1px 2px rgba(29, 27, 43, 0.08), 0 8px 24px rgba(29, 27, 43, 0.10);
-    --serif: "Newsreader", Georgia, serif;
-    --sans: "Instrument Sans", system-ui, sans-serif;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --paper: #14131C; --card: #1E1D29; --ink: #ECEAF4; --muted: #A29FB5; --rule: #2B2938;
-      --indigo: #A9A1FF; --indigo-soft: #262245;
-      --matcha: #A8CF7A; --matcha-soft: #222E18;
-      --peach: #F4A07F;  --peach-soft: #3A2219;
-      --sky: #8CC2F0;    --sky-soft: #182A3A;
-      --butter: #F2CF6B; --butter-soft: #352C12;
-      --tape: rgba(242, 207, 107, 0.35);
-      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35);
-    }
-  }
-  :root[data-theme="dark"] {
-    --paper: #14131C; --card: #1E1D29; --ink: #ECEAF4; --muted: #A29FB5; --rule: #2B2938;
-    --indigo: #A9A1FF; --indigo-soft: #262245;
-    --matcha: #A8CF7A; --matcha-soft: #222E18;
-    --peach: #F4A07F;  --peach-soft: #3A2219;
-    --sky: #8CC2F0;    --sky-soft: #182A3A;
-    --butter: #F2CF6B; --butter-soft: #352C12;
-    --tape: rgba(242, 207, 107, 0.35);
-    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35);
-  }
 
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: var(--paper);
-    color: var(--ink);
-    font-family: var(--serif);
-    font-size: 1.1875rem;
-    line-height: 1.62;
-    overflow-x: hidden;
-  }
-  a { color: var(--indigo); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
-  a:hover { text-decoration-thickness: 2px; }
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--indigo); outline-offset: 3px; border-radius: 3px; }
-  .page { max-width: 64rem; margin: 0 auto; padding: 0 16px 4rem; }
+:root {
+  color-scheme: dark;
+  --bg: #111219; --surface: #171923; --surface-2: #1E2130;
+  --ink: #ECEBF4; --muted: #A09EB2; --faint: #6E6D80; --rule: #282A39;
+  --accent: #AAB4FF; --accent-soft: rgba(170, 180, 255, 0.14);
+  --mark: rgba(170, 180, 255, 0.28); --star: #FFD06B;
+  --serif: "Source Serif 4", Georgia, serif; --sans: "Schibsted Grotesk", system-ui, sans-serif;
+  --side: 17.5rem;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1.125rem/1.7 var(--serif); overflow-x: hidden; }
+a { color: var(--accent); text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+::selection { background: var(--mark); }
 
-  /* ---------- Hero ---------- */
-  header.hero { position: relative; padding: 4.5rem 0 4rem; }
-  .hero-grid { display: grid; gap: 2.5rem; align-items: center; }
-  @media (min-width: 52rem) { .hero-grid { grid-template-columns: 1fr 17rem; gap: 3.5rem; } }
+/* ---------- Custom cursor (fine pointers only) ---------- */
+.cur-dot, .cur-ring { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 100; opacity: 0; border-radius: 50%; transform: translate3d(-100px, -100px, 0); }
+.cur-dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: var(--accent); }
+.cur-ring {
+  width: 34px; height: 34px; margin: -17px 0 0 -17px; border: 1px solid rgba(170, 180, 255, 0.55);
+  display: grid; place-items: center; font: 600 0.62rem var(--sans); letter-spacing: 0.06em; color: var(--bg);
+  transition: width .2s, height .2s, margin .2s, background-color .2s, border-color .2s, opacity .2s;
+}
+.cur-ring span { opacity: 0; transition: opacity .15s; }
+body.cursor-on { cursor: none; }
+body.cursor-on a, body.cursor-on button { cursor: none; }
+body.cursor-on .cur-dot, body.cursor-on .cur-ring { opacity: 1; }
+body.cur-link .cur-ring { width: 54px; height: 54px; margin: -27px 0 0 -27px; background: var(--accent-soft); border-color: var(--accent); }
+body.cur-look .cur-ring { width: 64px; height: 64px; margin: -32px 0 0 -32px; background: var(--accent); border-color: var(--accent); }
+body.cur-look .cur-ring span { opacity: 1; }
+body.cur-look .cur-dot { opacity: 0; }
 
-  .greeting { margin: 0 0 1rem; }
-  .greeting button {
-    font: 500 1rem var(--sans);
-    color: var(--g-ink, var(--indigo));
-    background: var(--g-bg, var(--indigo-soft));
-    border: 0; border-radius: 999px;
-    padding: 0.35rem 0.9rem;
-    cursor: pointer;
-    transition: background-color 400ms ease, color 400ms ease;
-  }
-  .greeting .lang-name { opacity: 0.75; font-weight: 400; }
-  #hello { display: inline-block; transition: opacity 300ms ease, transform 300ms ease; }
-  #hello.out { opacity: 0; transform: translateY(-0.3em); }
+/* ---------- Layout ---------- */
+.layout { display: block; }
+@media (min-width: 64rem) { .layout { display: grid; grid-template-columns: var(--side) 1fr; } }
 
-  h1 {
-    font-weight: 500;
-    font-size: clamp(3.1rem, 9vw, 6.4rem);
-    line-height: 0.98;
-    letter-spacing: -0.025em;
-    margin: 0;
-    position: relative;
-    width: fit-content;
-    padding-bottom: 0.32em;
-  }
-  .squiggle { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 0.3em; color: var(--peach); }
-  .vi-name { font-size: clamp(1.3rem, 2.6vw, 1.65rem); color: var(--muted); margin: 0.5rem 0 0; font-style: italic; }
-  .lede { max-width: 36rem; font-size: clamp(1.22rem, 2.2vw, 1.42rem); line-height: 1.5; margin: 1.75rem 0 0; }
-  .links { font-family: var(--sans); font-size: 0.95rem; display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 2rem 0 0; padding: 0; list-style: none; }
-  .links a {
-    display: inline-block; text-decoration: none; color: var(--ink);
-    border: 1.5px solid var(--rule); border-radius: 999px; padding: 0.3rem 0.85rem; background: var(--card);
-    transition: border-color 150ms ease, transform 150ms ease;
-  }
-  .links a:hover { border-color: var(--indigo); transform: translateY(-1px); }
+/* Mobile top bar */
+.topbar { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 1rem; padding: 0.8rem 16px; background: rgba(17, 18, 25, 0.88); backdrop-filter: blur(10px); border-bottom: 1px solid var(--rule); font: 500 0.85rem var(--sans); overflow-x: auto; white-space: nowrap; }
+.topbar a { color: var(--muted); text-decoration: none; }
+.topbar a.active { color: var(--accent); }
+.topbar .mono { color: var(--ink); font-weight: 600; margin-right: 0.25rem; }
+@media (min-width: 64rem) { .topbar { display: none; } }
 
-  /* Polaroids, tape and stickers */
-  .polaroid {
-    position: relative; margin: 0; background: var(--card); padding: 0.7rem 0.7rem 2.6rem;
-    box-shadow: var(--shadow); border-radius: 3px; transform: rotate(var(--tilt, -3deg));
-  }
-  .polaroid img { display: block; width: 100%; height: auto; border-radius: 1px; }
-  .polaroid figcaption {
-    position: absolute; left: 0.5rem; right: 0.5rem; bottom: 0.65rem; text-align: center;
-    font-family: var(--sans); font-size: 0.85rem; color: var(--muted);
-  }
-  .tape::before {
-    content: ""; position: absolute; top: -0.8rem; left: 50%; width: 6rem; height: 1.6rem;
-    background: var(--tape); transform: translateX(-50%) rotate(var(--tape-tilt, 3deg));
-  }
-  .portrait-wrap { position: relative; width: 100%; max-width: 15rem; justify-self: center; }
-  .portrait-wrap .polaroid img { aspect-ratio: 4 / 5; object-fit: cover; }
-  .sticker {
-    position: absolute; z-index: 2;
-    font: 600 0.85rem var(--sans); white-space: nowrap;
-    padding: 0.35rem 0.75rem; border-radius: 999px;
-    color: var(--s-ink); background: var(--s-bg);
-    box-shadow: 0 0 0 3px var(--card), var(--shadow);
-    transform: rotate(var(--r, 0deg));
-  }
-  .s1 { --s-ink: var(--sky); --s-bg: var(--sky-soft); --r: -8deg; top: 66%; left: -2.5rem; }
-  .s2 { --s-ink: var(--matcha); --s-bg: var(--matcha-soft); --r: 6deg; top: 38%; right: -2.2rem; }
-  .s3 { --s-ink: var(--peach); --s-bg: var(--peach-soft); --r: -5deg; bottom: -0.9rem; right: 0.6rem; }
-  .s4 { --s-ink: var(--butter); --s-bg: var(--butter-soft); --r: 7deg; top: -1.2rem; right: -1rem; }
-  @media (max-width: 30rem) { .s1 { left: -0.8rem; } .s2 { right: -0.8rem; } .s4 { right: -0.4rem; } }
+/* Sidebar parse tree */
+.side { display: none; }
+@media (min-width: 64rem) {
+  .side { display: flex; flex-direction: column; position: sticky; top: 0; height: 100vh; padding: 2rem 1.5rem 1.5rem 2rem; border-right: 1px solid var(--rule); }
+}
+.root { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--ink); }
+.root .mono {
+  width: 2.6rem; height: 2.6rem; border-radius: 50%; display: grid; place-items: center;
+  font: 600 0.85rem var(--sans); background: var(--ink); color: var(--bg); box-shadow: 0 0 0 4px var(--bg), 0 0 0 5px var(--rule);
+}
+.root .t { font: 600 0.95rem/1.2 var(--sans); }
+.root .t i { display: block; font: italic 400 0.85rem var(--serif); color: var(--muted); }
+.treewrap { position: relative; margin: 0.75rem 0 0 1.3rem; }
+.tree { position: relative; list-style: none; margin: 0; padding: 0.5rem 0 0; }
+.tree::before { content: ""; position: absolute; left: 0; top: 0; bottom: 1.35rem; border-left: 1px dashed var(--faint); }
+.treewrap .prog { z-index: 1; position: absolute; left: -0.5px; top: 0; width: 2px; height: 0; background: var(--accent); border-radius: 2px; transition: height .45s cubic-bezier(.3,.7,.2,1); }
+.tree li { position: relative; padding: 0.55rem 0 0.55rem 1.9rem; }
+.tree li::before { content: ""; position: absolute; left: 0; top: 0; width: 1.2rem; height: 1.42rem; border-left: 1px solid transparent; border-bottom: 1px dashed var(--faint); border-bottom-left-radius: 10px; transition: border-color .3s; }
+.tree li.seen::before, .tree li.active::before { border-bottom: 1px solid var(--accent); }
+.tree a { display: flex; align-items: baseline; gap: 0.45rem; text-decoration: none; color: var(--muted); transition: color .2s, transform .2s; }
+.tree a::before {
+  content: ""; position: absolute; left: 1.05rem; top: 1.15rem; width: 0.6rem; height: 0.6rem; border-radius: 50%;
+  border: 1.5px solid var(--faint); background: var(--bg); transition: background-color .3s, border-color .3s, box-shadow .3s;
+}
+.tree .hw { font: 600 1rem var(--serif); }
+.tree .pos { font: italic 400 0.82rem var(--serif); color: var(--faint); }
+.tree a:hover { color: var(--ink); transform: translateX(3px); }
+.tree li.seen a::before { border-color: var(--accent); background: var(--surface-2); }
+.tree li.active a { color: var(--ink); }
+.tree li.active a::before { border-color: var(--accent); background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+.tree li.active .pos { color: var(--accent); }
+.side .status { margin-top: auto; font: 400 0.8rem/1.5 var(--sans); color: var(--muted); }
+.side .status .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #7BD8A6; margin-right: 0.45rem; box-shadow: 0 0 0 3px rgba(123, 216, 166, 0.2); }
+.side .status a { color: var(--muted); }
 
-  @media (prefers-reduced-motion: no-preference) {
-    .sticker { animation: pop 500ms cubic-bezier(.2, 1.4, .4, 1) both; }
-    .s1 { animation-delay: 300ms; } .s2 { animation-delay: 450ms; } .s3 { animation-delay: 600ms; } .s4 { animation-delay: 750ms; }
-    @keyframes pop { from { opacity: 0; transform: rotate(var(--r)) scale(0.4); } to { opacity: 1; transform: rotate(var(--r)) scale(1); } }
-  }
+/* ---------- Main ---------- */
+main { min-width: 0; }
+.wrap { max-width: 60rem; padding: 0 16px; margin: 0 auto; }
+@media (min-width: 52rem) { .wrap { padding: 0 3rem; } }
 
-  /* ---------- Sections ---------- */
-  section {
-    display: grid; grid-template-columns: 1fr; gap: 0.75rem 3rem;
-    padding: 3.5rem 0; border-top: 1px dashed var(--rule);
-  }
-  @media (min-width: 52rem) { section { grid-template-columns: 11rem 1fr; } }
-  h2 {
-    font: 700 0.95rem var(--sans);
-    margin: 0.3rem 0 0.5rem; justify-self: start; align-self: start;
-    color: var(--c); background: var(--c-soft);
-    padding: 0.3rem 0.8rem; border-radius: 6px;
-    transform: rotate(-2deg);
-  }
-  #about        { --c: var(--indigo); --c-soft: var(--indigo-soft); }
-  #experience   { --c: var(--sky);    --c-soft: var(--sky-soft); }
-  #research     { --c: var(--butter); --c-soft: var(--butter-soft); }
-  #projects     { --c: var(--matcha); --c-soft: var(--matcha-soft); }
-  #languages    { --c: var(--peach);  --c-soft: var(--peach-soft); }
-  #off-the-clock{ --c: var(--matcha); --c-soft: var(--matcha-soft); }
-  #contact      { --c: var(--indigo); --c-soft: var(--indigo-soft); }
-  .body { max-width: 41rem; min-width: 0; }
-  .body > p:first-child { margin-top: 0; }
+mark { color: #fff !important; background: linear-gradient(transparent 55%, var(--mark) 55%) no-repeat 0 0 / 0% 100%; color: inherit; padding: 0 0.08em; transition: background-size 900ms cubic-bezier(.3,.7,.2,1); }
+mark.on { background-size: 100% 100%; }
 
-  /* Entries */
-  .entry { margin: 0 0 2.25rem; padding-left: 1.1rem; border-left: 3px solid var(--c-soft); }
-  .entry:last-child { margin-bottom: 0; }
-  .entry h3 { font-size: 1.3rem; font-weight: 600; line-height: 1.3; margin: 0; }
-  .meta { font-family: var(--sans); font-size: 0.9rem; color: var(--muted); margin: 0.25rem 0 0.6rem; }
-  .entry p { margin: 0.4rem 0 0; }
+/* Headword hero */
+.entry { display: grid; gap: 2.5rem; padding: 4.5rem 0 3.5rem; }
+@media (min-width: 52rem) { .entry { grid-template-columns: 1fr 15rem; gap: 3rem; align-items: start; padding-top: 5.5rem; } }
+.hw-big { font: 700 clamp(3.2rem, 8.5vw, 5.8rem)/1 var(--serif); letter-spacing: -0.03em; margin: 0; white-space: nowrap; }
+.hw-big .ch { display: inline-block; position: relative; transition: color .15s, transform .25s; }
+.hw-big .dotsep { color: var(--accent); font-weight: 400; display: inline-block; }
+.hw-big .sp { display: inline-block; width: 0.28em; }
+/* Ezra-style glyph inspector on hover */
+.hw-big .ch:hover { color: transparent; -webkit-text-stroke: 1.5px var(--accent); }
+.hw-big .ch::after {
+  content: ""; position: absolute; left: -0.04em; right: -0.04em; top: 0.12em; bottom: 0.02em;
+  border: 1px dashed var(--accent); opacity: 0; transition: opacity .15s; pointer-events: none;
+}
+.hw-big .ch::before {
+  content: attr(data-u); position: absolute; left: 50%; top: -0.55em; transform: translateX(-50%);
+  font: 500 0.7rem var(--sans); letter-spacing: 0.04em; color: var(--accent); opacity: 0; transition: opacity .15s; white-space: nowrap;
+}
+.hw-big .ch:hover::after, .hw-big .ch:hover::before { opacity: 1; }
+/* Intro: letters close up from wide spacing */
+@media (prefers-reduced-motion: no-preference) {
+  .js .hw-big .ch, .js .hw-big .dotsep { opacity: 0; transform: translateY(0.35em); margin-right: 0.35em; transition: opacity .6s ease, transform .7s cubic-bezier(.2,.9,.2,1), margin .9s cubic-bezier(.2,.9,.2,1), color .15s; transition-delay: calc(var(--i) * 45ms); }
+  .js .hw-big.ready .ch, .js .hw-big.ready .dotsep { opacity: 1; transform: none; margin-right: 0; }
+}
+.pron { font: 400 1.1rem var(--sans); color: var(--muted); margin: 1.1rem 0 0; display: flex; flex-wrap: wrap; gap: 0.5rem 1.1rem; align-items: center; }
+.pron .pos { font: italic 400 1.2rem var(--serif); color: var(--accent); }
+.greet { font: 400 0.88rem var(--sans); color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: 0.2rem 0.75rem; background: var(--surface); transition: border-color .2s, color .2s; }
+.greet:hover { border-color: var(--accent); color: var(--accent); }
+.greet b { color: var(--ink); font-weight: 500; }
+.vi { font: italic 400 1.05rem var(--serif); color: var(--muted); margin: 0.5rem 0 0; }
+.senses { list-style: none; counter-reset: s; margin: 2rem 0 0; padding: 0; }
+.senses li { counter-increment: s; position: relative; padding: 0.55rem 0.75rem 0.55rem 2.6rem; margin: 0 -0.75rem 0.35rem 0; font-size: 1.18rem; line-height: 1.55; border-radius: 8px; transition: background-color .2s; }
+.senses li::before { content: counter(s); position: absolute; left: 0.75rem; top: 0.6rem; font: 700 1.15rem var(--serif); color: var(--accent); transition: transform .2s; }
+.senses li:hover { background: var(--surface); }
+.senses li:hover::before { transform: scale(1.25); }
+.senses .lab { font: italic 400 1.05rem var(--serif); color: var(--muted); }
+.senses .ex { display: block; font-style: italic; color: var(--muted); font-size: 1.04rem; margin-top: 0.2rem; }
+.etym { margin: 1.75rem 0 0; padding-top: 1.2rem; border-top: 1px dashed var(--rule); font-size: 1rem; color: var(--muted); }
+.etym b, .see b { font: 600 0.75rem var(--sans); letter-spacing: 0.05em; color: var(--ink); margin-right: 0.5rem; }
+.see { margin: 0.5rem 0 0; font-size: 1rem; color: var(--muted); }
+.see a { font-variant: small-caps; letter-spacing: 0.03em; }
 
-  /* Research */
-  .research-note { font-family: var(--sans); font-size: 0.92rem; color: var(--muted); margin: 0 0 1.5rem; }
-  .papers { list-style: none; margin: 0; padding: 0; }
-  .papers li { display: grid; grid-template-columns: 1fr; gap: 0.35rem; padding: 0 0 1.6rem; }
-  @media (min-width: 40rem) { .papers li { grid-template-columns: 7.5rem 1fr; gap: 1.25rem; } }
-  .venue {
-    font: 600 0.82rem var(--sans); white-space: nowrap; justify-self: start; align-self: start; margin-top: 0.3rem;
-    padding: 0.2rem 0.6rem; border-radius: 999px; color: var(--v); background: var(--v-soft);
-  }
-  .papers li:nth-child(1) .venue { --v: var(--peach);  --v-soft: var(--peach-soft); }
-  .papers li:nth-child(2) .venue { --v: var(--sky);    --v-soft: var(--sky-soft); }
-  .papers li:nth-child(3) .venue { --v: var(--matcha); --v-soft: var(--matcha-soft); }
-  .papers li:nth-child(4) .venue { --v: var(--indigo); --v-soft: var(--indigo-soft); }
-  .papers a.title { color: var(--ink); font-size: 1.18rem; line-height: 1.4; text-decoration-color: var(--rule); }
-  .papers a.title:hover { text-decoration-color: var(--butter); }
-  .papers .role { font-family: var(--sans); font-size: 0.88rem; color: var(--muted); margin: 0.3rem 0 0; }
+.plate { margin: 0; }
+.plate img { width: 100%; height: auto; display: block; border-radius: 4px; border: 1px solid var(--rule); padding: 0.45rem; background: var(--surface); transition: transform .3s cubic-bezier(.2,.9,.2,1), border-color .3s; }
+.plate:hover img { transform: translateY(-4px) rotate(-0.6deg); border-color: var(--accent); }
+.plate figcaption { font: 400 0.9rem/1.45 var(--serif); color: var(--muted); margin-top: 0.6rem; transition: color .2s; }
+.plate:hover figcaption { color: var(--ink); }
+.plate figcaption b { font: 600 0.75rem var(--sans); letter-spacing: 0.05em; color: var(--accent); margin-right: 0.35rem; }
+.hero-plate img { aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 18%; }
 
-  /* Languages */
-  .langs { list-style: none; margin: 0 0 1.75rem; padding: 0; display: flex; flex-wrap: wrap; gap: 0.75rem; }
-  .langs li {
-    background: var(--card); box-shadow: var(--shadow); border-radius: 10px;
-    padding: 0.7rem 1rem 0.6rem; transform: rotate(var(--r)); transition: transform 200ms ease;
-    border-top: 4px solid var(--l);
-  }
-  .langs li:hover { transform: rotate(0deg) translateY(-3px); }
-  .langs li:nth-child(1) { --l: var(--indigo); --r: -1.5deg; }
-  .langs li:nth-child(2) { --l: var(--peach);  --r: 1deg; }
-  .langs li:nth-child(3) { --l: var(--sky);    --r: -0.5deg; }
-  .langs li:nth-child(4) { --l: var(--butter); --r: 1.5deg; }
-  .langs li:nth-child(5) { --l: var(--matcha); --r: -1deg; }
-  .langs .word { display: block; font-size: 1.7rem; line-height: 1.15; font-weight: 500; color: var(--l); }
-  .langs .word[lang="zh"] { font-family: "Songti SC", "Noto Serif SC", "Noto Serif CJK SC", serif; }
-  .langs .info { font-family: var(--sans); font-size: 0.82rem; color: var(--muted); }
-  .langs-copy p { margin: 0 0 1rem; }
+/* Marquee */
+.marquee { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); overflow: hidden; padding: 0.85rem 0; background: var(--surface); }
+.track { display: flex; width: max-content; animation: slide 46s linear infinite; }
+.marquee:hover .track { animation-play-state: paused; }
+.track span { font: italic 400 clamp(1.35rem, 2.6vw, 1.9rem)/1 var(--serif); white-space: nowrap; padding: 0 1.2rem; color: var(--muted); transition: color .2s; }
+.track span:hover { color: var(--ink); }
+.track span.star { color: var(--star); font-style: normal; padding: 0; }
+@keyframes slide { to { transform: translateX(-50%); } }
 
-  /* Off the clock */
-  .hobby { margin: 0 0 3.25rem; }
-  .hobby:last-child { margin-bottom: 0; }
-  .hobby h3 { font-size: 1.45rem; font-weight: 600; margin: 0 0 0.5rem; }
-  .hobby p { margin: 0 0 0.8rem; }
-  .hobby .polaroid { margin: 2rem 0 0; }
-  .hobby .polaroid.cake { max-width: 22rem; margin-left: auto; margin-right: auto; }
-  .bakes {
-    list-style: none; margin: 2.25rem 0 0; padding: 0;
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.1rem;
-  }
-  @media (min-width: 40rem) { .bakes { grid-template-columns: repeat(3, 1fr); } }
-  .bakes li {
-    background: var(--card); padding: 0.45rem 0.45rem 0.4rem; box-shadow: var(--shadow); border-radius: 3px;
-    transform: rotate(var(--r, 0deg)); transition: transform 200ms ease;
-  }
-  .bakes li:nth-child(3n+1) { --r: -1.6deg; }
-  .bakes li:nth-child(3n+2) { --r: 1.2deg; }
-  .bakes li:nth-child(3n)   { --r: -0.6deg; }
-  .bakes li:hover { transform: rotate(0deg) translateY(-4px) scale(1.02); }
-  .bakes img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; display: block; border-radius: 1px; }
-  .bakes span { display: block; font-family: var(--sans); font-size: 0.78rem; color: var(--muted); margin-top: 0.35rem; line-height: 1.35; text-align: center; }
-  .bakes li:nth-child(9) { display: none; }
-  @media (min-width: 40rem) { .bakes li:nth-child(9) { display: block; } }
+/* Section entries */
+section { display: grid; gap: 1.25rem 3rem; padding: 4.5rem 0; border-bottom: 1px solid var(--rule); scroll-margin-top: 3rem; }
+@media (min-width: 52rem) { section { grid-template-columns: 13rem 1fr; } }
+.head { align-self: start; }
+@media (min-width: 52rem) { .head { position: sticky; top: 2rem; } }
+h2 { display: inline; font: 700 2rem/1.15 var(--serif); letter-spacing: -0.02em; margin: 0; background: linear-gradient(transparent 58%, var(--mark) 58%) no-repeat 0 0 / 0% 100%; transition: background-size .5s cubic-bezier(.3,.7,.2,1); }
+.head:hover h2 { background-size: 100% 100%; }
+h2 .dotsep { color: var(--accent); font-weight: 400; }
+.head .pos { font: italic 400 1.05rem var(--serif); color: var(--accent); display: block; margin-top: 0.3rem; }
+.head .gloss { font: 400 0.88rem/1.5 var(--sans); color: var(--muted); margin: 0.75rem 0 0; }
+.body { min-width: 0; }
+.body > p { margin: 0 0 1.1rem; }
 
-  /* Contact card */
-  .contact-card { background: var(--indigo-soft); border-radius: 14px; padding: 1.6rem 1.6rem 1.4rem; }
-  .contact-card h3 { font-size: 1.6rem; font-weight: 600; margin: 0 0 0.5rem; }
-  .contact-card p { margin: 0 0 1.1rem; }
-  .btn {
-    display: inline-block; font: 600 1rem var(--sans); text-decoration: none;
-    color: var(--paper); background: var(--indigo); padding: 0.6rem 1.15rem; border-radius: 999px; margin: 0 0.5rem 0.5rem 0;
-    transition: transform 150ms ease;
-  }
-  .btn.ghost { color: var(--indigo); background: transparent; box-shadow: inset 0 0 0 1.5px var(--indigo); }
-  .btn:hover { transform: translateY(-2px); }
+/* Experience */
+.defs { list-style: none; margin: 0; padding: 0; counter-reset: d; }
+.defs > li { counter-increment: d; position: relative; padding: 1.1rem 1.1rem 1.2rem 3.2rem; margin: 0 0 0.6rem -1.1rem; border-radius: 10px; border: 1px solid transparent; transition: background-color .25s, border-color .25s; }
+.defs > li::before { content: counter(d) "."; position: absolute; left: 1.1rem; top: 1.15rem; font: 700 1.2rem var(--serif); color: var(--accent); }
+.defs > li:hover { background: var(--surface); border-color: var(--rule); }
+.defs h3 { font: 600 1.3rem/1.3 var(--serif); margin: 0; transition: transform .25s, color .25s; }
+.defs > li:hover h3 { transform: translateX(4px); color: var(--accent); }
+.defs .sub { font: 400 0.9rem var(--sans); color: var(--muted); margin: 0.25rem 0 0.6rem; }
+.defs p { margin: 0; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.8rem 0 0; padding: 0; list-style: none; }
+.tags li { font: 400 0.76rem var(--sans); color: var(--accent); background: var(--accent-soft); padding: 0.15rem 0.6rem; border-radius: 999px; }
 
-  footer { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); padding-top: 2.5rem; text-align: center; }
+/* Research */
+.note { font: 400 0.9rem var(--sans); color: var(--muted); margin: 0 0 1.25rem; }
+.cites { list-style: none; margin: 0; padding: 0; }
+.cites li { border-top: 1px solid var(--rule); }
+.cites li:first-child { border-top: 0; }
+.cites a { display: grid; grid-template-columns: 1fr auto; gap: 1rem; padding: 1rem 0.25rem; color: var(--ink); text-decoration: none; transition: padding .25s, color .25s; }
+.cites a:hover { padding-left: 0.9rem; color: var(--accent); }
+.cites .t { font-weight: 600; }
+.cites .v { display: block; font: italic 400 1rem var(--serif); color: var(--muted); }
+.cites .arr { color: var(--faint); transition: transform .25s, color .25s; }
+.cites a:hover .arr { transform: translate(3px, -3px); color: var(--accent); }
+.boxed { display: block; margin-top: 2rem; border: 1px solid var(--rule); background: var(--surface); padding: 1.2rem 1.4rem; border-radius: 10px; text-decoration: none; color: var(--ink); transition: border-color .25s, transform .25s; }
+.boxed:hover { border-color: var(--accent); transform: translateY(-3px); }
+.boxed .k { font: 600 0.75rem var(--sans); letter-spacing: 0.05em; color: var(--star); }
+.boxed h3 { font: 600 1.3rem var(--serif); margin: 0.25rem 0 0.3rem; color: var(--accent); }
+.boxed p { margin: 0; color: var(--muted); }
 
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    *, *::before, *::after { transition: none !important; animation: none !important; }
-  }
+/* Translations */
+.trans { border: 1px solid var(--rule); border-radius: 10px; margin: 0 0 2rem; overflow: hidden; background: var(--surface); }
+.trans .t { font: 600 0.78rem var(--sans); letter-spacing: 0.05em; padding: 0.65rem 1rem; border-bottom: 1px solid var(--rule); display: flex; justify-content: space-between; }
+.trans .t span { font-weight: 400; color: var(--muted); letter-spacing: 0; }
+.trans ul { list-style: none; margin: 0; padding: 0.3rem 1rem 0.6rem; display: grid; grid-template-columns: 1fr; }
+@media (min-width: 40rem) { .trans ul { grid-template-columns: 1fr 1fr; column-gap: 2rem; } }
+.trans li { display: flex; align-items: baseline; gap: 0.6rem; padding: 0.5rem 0; border-bottom: 1px dotted var(--rule); }
+.trans .lang { font: 400 0.86rem var(--sans); color: var(--muted); min-width: 6.4rem; }
+.trans .w { font: 600 1.35rem var(--serif); display: inline-block; transition: transform .2s, color .2s; transform-origin: left center; }
+.trans li:hover .w { transform: scale(1.12); color: var(--accent); }
+.trans .w[lang="zh"] { font-family: "Songti SC", "Noto Serif SC", "Noto Serif CJK SC", serif; font-weight: 400; }
+.trans .lv { margin-left: auto; font: italic 400 0.92rem var(--serif); color: var(--muted); text-align: right; }
+.trans li.py .w { font-family: ui-monospace, monospace; font-size: 1rem; font-weight: 400; color: var(--star); }
+
+/* Plates */
+.plates { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.75rem 1rem; margin: 0 0 3rem; }
+@media (min-width: 72rem) { .plates { grid-template-columns: repeat(4, 1fr); } }
+.plates .plate img { aspect-ratio: 4 / 5; object-fit: cover; }
+.usage { display: grid; gap: 1.5rem 2.5rem; padding: 2rem 0 0; border-top: 1px dashed var(--rule); margin-top: 2rem; }
+@media (min-width: 60rem) { .usage { grid-template-columns: 1fr 1fr; } }
+.usage h3 { font: 700 1.5rem var(--serif); margin: 0; }
+.usage h3 .pos { font: italic 400 1rem var(--serif); color: var(--accent); margin-left: 0.4rem; }
+.usage p { margin: 0.6rem 0 0; }
+.bakes { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+.bakes img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; display: block; border-radius: 6px; border: 1px solid var(--rule); transition: transform .25s, border-color .25s; }
+.bakes li:hover img { transform: scale(1.04); border-color: var(--accent); }
+.bakes span { display: block; font: italic 400 0.84rem/1.25 var(--serif); color: var(--muted); margin-top: 0.3rem; }
+
+/* Contact */
+.cta { display: inline-block; font: 600 1rem var(--sans); color: var(--bg); background: var(--accent); text-decoration: none; padding: 0.7rem 1.2rem; border-radius: 999px; margin: 0.6rem 0.6rem 0 0; transition: transform .2s, box-shadow .2s; }
+.cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(170, 180, 255, 0.25); }
+.cta.alt { background: transparent; color: var(--accent); box-shadow: inset 0 0 0 1.5px var(--accent); }
+footer { padding: 1.75rem 0 2.5rem; font: 400 0.85rem var(--sans); color: var(--faint); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .track { animation: none; }
+  *, *::before, *::after { transition: none !important; }
+}
+
 </style>
 </head>
-<body>
-<div class="page">
 
-  <header class="hero">
-    <div class="hero-grid">
-      <div>
-        <p class="greeting"><button type="button" id="hello-btn" aria-label="Show a greeting in another language"><span id="hello">Hello <span class="lang-name">in English</span></span></button></p>
-        <h1>Fiona Hoang
-          <svg class="squiggle" viewBox="0 0 300 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 9 C 20 2, 35 13, 52 7 S 85 2, 102 8 S 135 13, 152 7 S 185 2, 202 8 S 235 13, 252 7 S 285 3, 298 8" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/></svg>
-        </h1>
-        <p class="vi-name" lang="vi">Hoàng Hạnh Phương</p>
-        <p class="lede">I'm a software engineer who likes building the parts of a system that everyone else gets to lean on. So far, that's meant AI infrastructure at Huawei and research tools at the University of Toronto. What's next? I'm open to backend, infrastructure, ML, or something I haven't tried yet!</p>
-        <ul class="links">
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#research">Research</a></li>
-          <li><a href="#off-the-clock">Off the clock</a></li>
-          <li><a href="mailto:hhpfiona@gmail.com">Email</a></li>
-          <li><a href="https://github.com/hhpfiona">GitHub</a></li>
-        </ul>
-      </div>
-      <div class="portrait-wrap">
-        <figure class="polaroid tape">
-          <img src="img/portrait.jpg" alt="Fiona smiling at a volleyball tournament" width="400" height="500">
-          <figcaption>Hi, I'm Fiona!</figcaption>
-        </figure>
-        <span class="sticker s1">Software engineer</span>
-        <span class="sticker s2">Setter</span>
-        <span class="sticker s3">Baker</span>
-        <span class="sticker s4">5 languages + Python</span>
-      </div>
-    </div>
-  </header>
+<body>
+<div class="cur-dot" aria-hidden="true"></div><div class="cur-ring" aria-hidden="true"><span>LOOK</span></div>
+
+<nav class="topbar" aria-label="Sections"><span class="mono">FH</span><a href="#background" data-for="background">background</a><a href="#experience" data-for="experience">experience</a><a href="#research" data-for="research">research</a><a href="#languages" data-for="languages">languages</a><a href="#life" data-for="life">off the clock</a><a href="#contact" data-for="contact">contact</a></nav>
+
+<div class="layout">
+  <aside class="side" aria-label="Page outline">
+    <a class="root" href="#entry"><span class="mono">FH</span><span class="t">Fiona Hoang<i>noun</i></span></a>
+    <div class="treewrap"><span class="prog" aria-hidden="true"></span><ol class="tree">
+      <li data-for="background"><a href="#background"><span class="hw">back·ground</span><span class="pos">n.</span></a></li>
+<li data-for="experience"><a href="#experience"><span class="hw">ex·pe·ri·ence</span><span class="pos">n.</span></a></li>
+<li data-for="research"><a href="#research"><span class="hw">re·search</span><span class="pos">n.</span></a></li>
+<li data-for="languages"><a href="#languages"><span class="hw">lan·guag·es</span><span class="pos">pl. n.</span></a></li>
+<li data-for="life"><a href="#life"><span class="hw">off the clock</span><span class="pos">idiom</span></a></li>
+<li data-for="contact"><a href="#contact"><span class="hw">con·tact</span><span class="pos">v.</span></a></li>
+    </ol></div>
+    <p class="status"><span class="dot" aria-hidden="true"></span>Open to work<br>Toronto, <time id="clock">--:--</time><br><a href="mailto:hhpfiona@gmail.com">hhpfiona@gmail.com</a></p>
+  </aside>
 
   <main>
-    <section id="about" aria-labelledby="about-h">
-      <h2 id="about-h">About</h2>
-      <div class="body">
-        <p>Most recently, I spent a year as a software engineer co-op at Huawei Canada's Noah's Ark Lab, working on mobile AI infrastructure: serving models on our own GPUs, and keeping a fleet of devices running smoothly even when they'd rather not. Before and alongside that, I spent two years as a research engineer at the University of Toronto's Lee Language Lab, where I worked on URIEL+, a database of how the world's languages relate to one another, and co-authored four papers along the way.</p>
-        <p>I graduated from the University of Toronto in 2026 with an Honours Bachelor of Science, with High Distinction, in Computer Science and Psychology.</p>
-        <p>Healthcare has always been close to home for me, since my mother and brother both work in the industry, and mental health in particular is something I care about deeply. That's what first drew me to psychology. Then a few cognitive science courses got me hooked on how people think, and especially on how we sort the world into categories. Half of software engineering is arguing about which box something belongs in, so it's turned out more useful than I expected!</p>
-      </div>
-    </section>
-
-    <section id="experience" aria-labelledby="experience-h">
-      <h2 id="experience-h">Experience</h2>
-      <div class="body">
-        <div class="entry">
-          <h3>Research Engineer, Lee Language Lab</h3>
-          <p class="meta">University of Toronto, with Prof. En-Shiun Annie Lee<br>2024 – Aug 2026</p>
-          <p>Extended the URIEL+ typological knowledge base and co-authored four papers built on it. Reviewed code for the URIEL+ papers.</p>
+    <div class="wrap">
+      <div class="entry" id="entry">
+        <div>
+          <h1 class="hw-big" aria-label="Fiona Hoang"><span class="ch" data-u="F" style="--i:0">F</span><span class="ch" data-u="I" style="--i:1">i</span><span class="dotsep" style="--i:2" aria-hidden="true">·</span><span class="ch" data-u="O" style="--i:3">o</span><span class="dotsep" style="--i:4" aria-hidden="true">·</span><span class="ch" data-u="N" style="--i:5">n</span><span class="ch" data-u="A" style="--i:6">a</span><span class="sp"></span><span class="ch" data-u="H" style="--i:7">H</span><span class="ch" data-u="O" style="--i:8">o</span><span class="ch" data-u="A" style="--i:9">a</span><span class="ch" data-u="N" style="--i:10">n</span><span class="ch" data-u="G" style="--i:11">g</span></h1>
+          <p class="pron"><span>fee-OH-nuh hwahng</span><span class="pos">noun</span>
+            <button class="greet" id="greet" type="button" aria-label="Show a greeting in another language"><b id="gw">Hello</b> <span id="gl">(English)</span></button></p>
+          <p class="vi" lang="vi">Hoàng Hạnh Phương</p>
+          <ol class="senses">
+            <li>A software engineer who likes building the parts of a system that everyone else gets to lean on. <span class="ex">"She's done AI infrastructure at Huawei and research tools at the University of Toronto, and she's <mark>open to backend, infrastructure, ML, or something she hasn't tried yet</mark>."</span></li>
+            <li><span class="lab">(volleyball)</span> A setter: one who makes other people look good and receives none of the credit.</li>
+            <li><span class="lab">(informal)</span> A baker, chiefly of matcha cookies.</li>
+            <li>A speaker of five languages, or six, depending on whether Python counts.</li>
+          </ol>
+          <p class="etym"><b>ORIGIN</b>From Vietnamese <i lang="vi">Hoàng Hạnh Phương</i>. Published as <i>Phuong Hanh Hoang</i>.</p>
+          <p class="see"><b>SEE ALSO</b><a href="#experience">experience</a>, <a href="#research">research</a>, <a href="#languages">languages</a>, <a href="#life">off the clock</a>, <a href="#contact">contact</a></p>
         </div>
-        <div class="entry">
-          <h3>Software Engineer Co-op, Huawei Canada</h3>
-          <p class="meta">Noah's Ark Lab, Mobile AI Infrastructure<br>May 2025 – May 2026</p>
-          <p>Self-hosted model inference on NVIDIA GPUs, including serving Qwen2-VL locally instead of through an API. Worked on a device framework that handles device failures, timeouts and retries, with automated tests, and reviewed teammates' code.</p>
-        </div>
+        <figure class="plate hero-plate" data-cursor="look">
+          <img src="img/headshot.jpg" alt="Fiona Hoang smiling, in a denim jacket" width="733" height="1100">
+          <figcaption><b>Plate I.</b>Fiona Hoang, photographed in a rare formal moment.</figcaption>
+        </figure>
       </div>
-    </section>
+    </div>
 
-    <section id="research" aria-labelledby="research-h">
-      <h2 id="research-h">Research</h2>
-      <div class="body">
-        <p class="research-note">Published as Phuong Hanh Hoang. Full list on the <a href="https://aclanthology.org/people/phuong-hanh-hoang/">ACL Anthology</a>.</p>
-        <ul class="papers">
-          <li>
-            <span class="venue">EACL 2026</span>
-            <div>
-              <a class="title" href="https://aclanthology.org/2026.eacl-srw.8/">Modality Matching Matters: Calibrating Language Distances for Cross-Lingual Transfer in URIEL+</a>
-              <p class="role">Student Research Workshop</p>
-            </div>
-          </li>
-          <li>
-            <span class="venue">LREC 2026</span>
-            <div><a class="title" href="https://aclanthology.org/2026.lrec-1.863/">Simple Additions, Substantial Gains: Expanding Scripts, Languages, and Lineage Coverage in URIEL+</a></div>
-          </li>
-          <li>
-            <span class="venue">EMNLP 2025</span>
-            <div><a class="title" href="https://aclanthology.org/2025.emnlp-main.1310/">Less is More: The Effectiveness of Compact Typological Language Representations</a></div>
-          </li>
-          <li>
-            <span class="venue">COLING 2025</span>
-            <div><a class="title" href="https://aclanthology.org/2025.coling-main.463/">URIEL+: Enhancing Linguistic Inclusion and Usability in a Typological and Multilingual Knowledge Base</a></div>
-          </li>
-        </ul>
-      </div>
-    </section>
+    <div class="marquee" aria-label="Hello in five languages, plus Python"><div class="track" aria-hidden="true"><span>Hello</span><span class="star" aria-hidden="true">✦</span><span>Xin chào</span><span class="star" aria-hidden="true">✦</span><span>Bonjour</span><span class="star" aria-hidden="true">✦</span><span>Hola</span><span class="star" aria-hidden="true">✦</span><span>你好</span><span class="star" aria-hidden="true">✦</span><span>print("hello")</span><span class="star" aria-hidden="true">✦</span><span>software engineer</span><span class="star" aria-hidden="true">✦</span><span>setter</span><span class="star" aria-hidden="true">✦</span><span>baker</span><span class="star" aria-hidden="true">✦</span><span>polyglot, pending</span><span class="star" aria-hidden="true">✦</span><span>Hello</span><span class="star" aria-hidden="true">✦</span><span>Xin chào</span><span class="star" aria-hidden="true">✦</span><span>Bonjour</span><span class="star" aria-hidden="true">✦</span><span>Hola</span><span class="star" aria-hidden="true">✦</span><span>你好</span><span class="star" aria-hidden="true">✦</span><span>print("hello")</span><span class="star" aria-hidden="true">✦</span><span>software engineer</span><span class="star" aria-hidden="true">✦</span><span>setter</span><span class="star" aria-hidden="true">✦</span><span>baker</span><span class="star" aria-hidden="true">✦</span><span>polyglot, pending</span><span class="star" aria-hidden="true">✦</span></div></div>
 
-    <section id="projects" aria-labelledby="projects-h">
-      <h2 id="projects-h">Projects</h2>
-      <div class="body">
-        <div class="entry">
-          <h3><a href="https://github.com/hhpfiona/PluralTree">PluralTree</a></h3>
-          <p class="meta">LLM systems research, University of Toronto, 2026</p>
-          <p>A work-in-progress research pipeline for improving how culturally accurate a language model's answers are, built in the University of Toronto's LLM systems research course.</p>
-        </div>
-      </div>
-    </section>
+    <div class="wrap">
+      <section id="background" aria-labelledby="bg-h">
+        <div class="head"><h2 id="bg-h">back<span class="dotsep">·</span>ground</h2><span class="pos">noun</span><p class="gloss">The circumstances that explain how someone came to be where they are.</p></div>
+        <div class="body"><p>Most recently, I spent a year as a software engineer co-op at Huawei Canada's Noah's Ark Lab, working on mobile AI infrastructure: serving models on our own GPUs, and keeping a fleet of devices running smoothly even when they'd rather not. Before and alongside that, I spent two years as a research engineer at the University of Toronto's Lee Language Lab, where I worked on URIEL+, a database of how the world's languages relate to one another, and co-authored four papers along the way.</p>
+<p>I graduated from the University of Toronto in 2026 with an Honours Bachelor of Science, with High Distinction, in Computer Science and Psychology.</p>
+<p>Healthcare has always been close to home for me, since my mother and brother both work in the industry, and mental health in particular is something I care about deeply. That's what first drew me to psychology. Then a few cognitive science courses got me hooked on how people think, and especially on how we sort the world into categories. <mark>Half of software engineering is arguing about which box something belongs in</mark>, so it's turned out more useful than I expected!</p></div>
+      </section>
 
-    <section id="languages" aria-labelledby="languages-h">
-      <h2 id="languages-h">Languages</h2>
-      <div class="body">
-        <ul class="langs">
-          <li><span class="word" lang="en">Hello</span><span class="info">English, fluent</span></li>
-          <li><span class="word" lang="vi">Xin chào</span><span class="info">Vietnamese, fluent</span></li>
-          <li><span class="word" lang="fr">Bonjour</span><span class="info">French, advanced</span></li>
-          <li><span class="word" lang="es">Hola</span><span class="info">Spanish, learning</span></li>
-          <li><span class="word" lang="zh">你好</span><span class="info">Mandarin, learning</span></li>
-        </ul>
-        <div class="langs-copy">
-          <p>When I was younger, I promised myself I'd be fluent in ten languages by the time I turned thirty. Polyglots seemed like the coolest people alive, and I fully intended to become one.</p>
-          <p>So far, I'm at five. Two of those are fluent, although I'll admit that's cheating a little: Vietnamese is my mother tongue, so I should be good at it regardless, and English was never really optional for someone living in Canada. French is getting there, slowly but stubbornly, while Spanish and Mandarin are still very much works in progress.</p>
-          <p>Somewhere along the way, I also picked up Python, and then a handful of other programming languages after it. I'm counting them toward the ten. Nobody has told me they don't count!</p>
-          <p>That childhood goal is also how my research ended up in multilingual NLP. I care about the languages technology tends to leave behind, from endangered languages to dead ones, although the dead ones do have one advantage: they never complain about the output.</p>
-        </div>
-      </div>
-    </section>
+      <section id="experience" aria-labelledby="exp-h">
+        <div class="head"><h2 id="exp-h">ex<span class="dotsep">·</span>pe<span class="dotsep">·</span>ri<span class="dotsep">·</span>ence</h2><span class="pos">noun</span><p class="gloss">Practical knowledge gained by doing the thing, repeatedly, until it works.</p></div>
+        <div class="body"><ol class="defs">
+      <li><h3>Research Engineer, Lee Language Lab, University of Toronto</h3><div class="sub">with Prof. En-Shiun Annie Lee. 2024 – Aug 2026</div><p>Extended the URIEL+ typological knowledge base and co-authored four papers built on it. Reviewed code for the URIEL+ papers.</p><ul class="tags"><li>Knowledge bases</li><li>Research engineering</li><li>Code review</li><li>4 papers</li></ul></li>
 
-    <section id="off-the-clock" aria-labelledby="off-h">
-      <h2 id="off-h">Off the clock</h2>
-      <div class="body">
-        <div class="hobby">
-          <h3>Volleyball</h3>
-          <p>I play in several leagues as a setter, which means my job is to make other people look good and receive none of the credit. It was excellent preparation for infrastructure work.</p>
-          <figure class="polaroid tape" style="--tilt: 1.2deg; --tape-tilt: -4deg;">
-            <img src="img/volleyball-set.jpg" alt="Fiona, in a purple jersey, setting the ball at an outdoor volleyball tournament" width="1400" height="949" loading="lazy">
-            <figcaption>Setting at an outdoor tournament</figcaption>
-          </figure>
-        </div>
-        <div class="hobby">
-          <h3>Baking</h3>
-          <p>Cookies are my default, although muffins have been gaining ground fast lately. When I'm feeling ambitious, I'll take on brownies, banana bread, pies, scones, cheesecake or cream puffs. My most requested recipe is matcha cookies, made with white chocolate and either marshmallow or roasted macadamia nuts.</p>
-          <p>Recently, I made my first ever birthday cake! It tasted better than it looked, which I maintain is the correct order of priorities. Recipes are small experiments with fast feedback, and luckily my friends are always happy to be the evaluation set.</p>
-          <figure class="polaroid tape cake" style="--tilt: -1.8deg; --tape-tilt: 5deg;">
-            <img src="img/birthday-cake.jpg" alt="A friend, face covered with a cookie sticker, cutting Fiona's first birthday cake, frosted with caramel drips" width="750" height="1000" loading="lazy">
-            <figcaption>My first birthday cake. Tastes better than it looks!</figcaption>
-          </figure>
-          <ul class="bakes">
-            <li><img src="img/apple-rose-tart.jpg" alt="Apple tart with slices arranged in a rose" loading="lazy" width="600" height="600"><span>Apple rose tart</span></li>
-            <li><img src="img/cotton-cheesecake.jpg" alt="Japanese cotton cheesecake dusted with icing sugar and topped with a strawberry" loading="lazy" width="600" height="600"><span>Japanese cotton cheesecake</span></li>
-            <li><img src="img/marshmallow-cookies.jpg" alt="Chocolate chunk cookies topped with toasted marshmallows" loading="lazy" width="600" height="600"><span>Marshmallow chocolate cookies</span></li>
-            <li><img src="img/layer-cake.jpg" alt="Sliced layer cake with drip icing" loading="lazy" width="600" height="600"><span>Layer cake</span></li>
-            <li><img src="img/crepe-cake.jpg" alt="Stacked crepe cake" loading="lazy" width="600" height="600"><span>Crepe cake</span></li>
-            <li><img src="img/cinnamon-roll.jpg" alt="Glazed cinnamon roll on a plate" loading="lazy" width="600" height="600"><span>Cinnamon roll</span></li>
-            <li><img src="img/raspberry-brownies.jpg" alt="Brownies swirled with cheesecake and raspberry" loading="lazy" width="600" height="600"><span>Raspberry cheesecake brownies</span></li>
-            <li><img src="img/chocolate-muffins.jpg" alt="Chocolate muffins in paper cases" loading="lazy" width="600" height="600"><span>Chocolate muffins</span></li>
-            <li><img src="img/cupcakes.jpg" alt="Cupcakes with cream cheese frosting and sprinkles" loading="lazy" width="600" height="600"><span>Cupcakes</span></li>
+      <li><h3>Software Engineer Co-op, Huawei Canada, Noah's Ark Lab</h3><div class="sub">Mobile AI Infrastructure. May 2025 – May 2026</div><p>Self-hosted model inference on NVIDIA GPUs, including serving Qwen2-VL locally instead of through an API. Worked on a device framework that handles device failures, timeouts and retries, with automated tests, and reviewed teammates' code.</p><ul class="tags"><li>Model serving</li><li>NVIDIA GPUs</li><li>Fault tolerance</li><li>Automated testing</li></ul></li>
+        </ol></div>
+      </section>
+
+      <section id="research" aria-labelledby="res-h">
+        <div class="head"><h2 id="res-h">re<span class="dotsep">·</span>search</h2><span class="pos">noun</span><p class="gloss">Systematic investigation, followed by a deadline.</p></div>
+        <div class="body">
+          <p class="note">Published as Phuong Hanh Hoang. Full list on the <a href="https://aclanthology.org/people/phuong-hanh-hoang/">ACL Anthology</a>.</p>
+          <ul class="cites">
+      <li><a href="https://aclanthology.org/2026.eacl-srw.8/"><span><span class="t">Modality Matching Matters: Calibrating Language Distances for Cross-Lingual Transfer in URIEL+</span><span class="v">EACL 2026, Student Research Workshop.</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
+
+      <li><a href="https://aclanthology.org/2026.lrec-1.863/"><span><span class="t">Simple Additions, Substantial Gains: Expanding Scripts, Languages, and Lineage Coverage in URIEL+</span><span class="v">LREC 2026.</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
+
+      <li><a href="https://aclanthology.org/2025.emnlp-main.1310/"><span><span class="t">Less is More: The Effectiveness of Compact Typological Language Representations</span><span class="v">EMNLP 2025.</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
+
+      <li><a href="https://aclanthology.org/2025.coling-main.463/"><span><span class="t">URIEL+: Enhancing Linguistic Inclusion and Usability in a Typological and Multilingual Knowledge Base</span><span class="v">COLING 2025.</span></span><span class="arr" aria-hidden="true">↗</span></a></li>
           </ul>
+          <a class="boxed" href="https://github.com/hhpfiona/PluralTree"><span class="k">PROJECT, IN PROGRESS</span><h3>PluralTree ↗</h3><p>A work-in-progress research pipeline for improving how culturally accurate a language model's answers are, built in the University of Toronto's LLM systems research course.</p></a>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="contact" aria-labelledby="contact-h">
-      <h2 id="contact-h">Contact</h2>
-      <div class="body">
-        <div class="contact-card">
-          <h3>Say hello!</h3>
-          <p>I'm looking for entry-level software roles, whether that's backend, infrastructure, ML or research engineering, in Toronto, remote in Canada, or further afield. If anything here caught your eye, I'd love to hear from you.</p>
-          <a class="btn" href="mailto:hhpfiona@gmail.com">Email hhpfiona@gmail.com</a>
-          <a class="btn ghost" href="https://github.com/hhpfiona">See my GitHub</a>
+      <section id="languages" aria-labelledby="lang-h">
+        <div class="head"><h2 id="lang-h">lan<span class="dotsep">·</span>guag<span class="dotsep">·</span>es</h2><span class="pos">plural noun</span><p class="gloss">Systems of communication. Count disputed; see sense 4.</p></div>
+        <div class="body">
+          <div class="trans"><div class="t">TRANSLATIONS OF "HELLO" <span>with level</span></div><ul><li><span class="lang">English</span><span class="w" lang="en">Hello</span><span class="lv">fluent</span></li>
+<li><span class="lang">Vietnamese</span><span class="w" lang="vi">Xin chào</span><span class="lv">fluent, mother tongue</span></li>
+<li><span class="lang">French</span><span class="w" lang="fr">Bonjour</span><span class="lv">advanced</span></li>
+<li><span class="lang">Spanish</span><span class="w" lang="es">Hola</span><span class="lv">learning</span></li>
+<li><span class="lang">Mandarin</span><span class="w" lang="zh">你好</span><span class="lv">learning</span></li><li class="py"><span class="lang">Python</span><span class="w">print("hello")</span><span class="lv">counts, apparently</span></li></ul></div>
+          <p>When I was younger, I promised myself I'd be fluent in ten languages by the time I turned thirty. Polyglots seemed like the coolest people alive, and I fully intended to become one.</p>
+<p>So far, I'm at five. Two of those are fluent, although I'll admit that's cheating a little: Vietnamese is my mother tongue, so I should be good at it regardless, and English was never really optional for someone living in Canada. French is getting there, slowly but stubbornly, while Spanish and Mandarin are still very much works in progress.</p>
+<p>Somewhere along the way, I also picked up Python, and then a handful of other programming languages after it. I'm counting them toward the ten. <mark>Nobody has told me they don't count!</mark></p>
+<p>That childhood goal is also how my research ended up in multilingual NLP. I care about the languages technology tends to leave behind, from endangered languages to dead ones, although the dead ones do have one advantage: they never complain about the output.</p>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section id="life" aria-labelledby="life-h">
+        <div class="head"><h2 id="life-h">off the clock</h2><span class="pos">idiom</span><p class="gloss">Not working. Observed below in several habitats.</p></div>
+        <div class="body">
+          <div class="plates"><figure class="plate" data-cursor="look"><img src="img/me-grad.jpg" alt="Fiona in her graduation gown holding her diploma in front of University College, Toronto, in autumn" width="750" height="1000" loading="lazy"><figcaption><b>Plate II.</b>Graduation, University College, Toronto.</figcaption></figure>
+<figure class="plate" data-cursor="look"><img src="img/me-cat.jpg" alt="Fiona laughing with an orange and white cat perched on her shoulders" width="783" height="1000" loading="lazy"><figcaption><b>Plate III.</b>With cat. Cat's consent unclear.</figcaption></figure>
+<figure class="plate" data-cursor="look"><img src="img/me-autumn.jpg" alt="Fiona in a plaid scarf under red maple leaves" width="750" height="1000" loading="lazy"><figcaption><b>Plate IV.</b>Autumn plumage.</figcaption></figure>
+<figure class="plate" data-cursor="look"><img src="img/me-dogs.jpg" alt="Fiona at a dog café with two small dogs on her lap and an Akita beside her" width="778" height="1000" loading="lazy"><figcaption><b>Plate V.</b>Outnumbered at a dog café.</figcaption></figure>
+<figure class="plate" data-cursor="look"><img src="img/me-pup.jpg" alt="Fiona sticking her tongue out, holding a small dog in a red hoodie" width="1000" height="750" loading="lazy"><figcaption><b>Plate VI.</b>Matching energy with a dog in a hoodie.</figcaption></figure>
+<figure class="plate" data-cursor="look"><img src="img/me-night.jpg" alt="Fiona in a knit scarf on a Toronto street at night" width="1000" height="846" loading="lazy"><figcaption><b>Plate VII.</b>Toronto, after dark.</figcaption></figure>
+<figure class="plate" data-cursor="look"><img src="img/me-rose.jpg" alt="Fiona smiling with a single red rose and a green bow" width="786" height="1000" loading="lazy"><figcaption><b>Plate VIII.</b>Holding a rose for reasons not recorded.</figcaption></figure>
+<figure class="plate" data-cursor="look"><img src="img/me-catflex.jpg" alt="Fiona flexing and frowning with a sleeping cat on her lap" width="1000" height="915" loading="lazy"><figcaption><b>Plate IX.</b>Display of strength, ignored by cat.</figcaption></figure></div>
+          <div class="usage">
+            <div><h3>set<span class="pos">verb</span></h3><p>I play in several leagues as a setter, which means my job is to make other people look good and receive none of the credit. It was excellent preparation for infrastructure work.</p></div>
+            <figure class="plate" data-cursor="look"><img src="img/volleyball-set.jpg" alt="Fiona, in a purple jersey, setting the ball at an outdoor tournament" width="1400" height="949" loading="lazy"><figcaption><b>Plate X.</b>Setting at an outdoor tournament.</figcaption></figure>
+          </div>
+          <div class="usage">
+            <div><h3>bake<span class="pos">verb</span></h3><p>Cookies are my default, although muffins have been gaining ground fast lately. When I'm feeling ambitious, I'll take on brownies, banana bread, pies, scones, cheesecake or cream puffs. My most requested recipe is matcha cookies, made with white chocolate and either marshmallow or roasted macadamia nuts.</p>
+<p>Recently, I made my first ever birthday cake! It tasted better than it looked, which I maintain is the correct order of priorities. Recipes are small experiments with fast feedback, and luckily my friends are always happy to be the evaluation set.</p><ul class="bakes"><li data-cursor="look"><img src="img/apple-rose-tart.jpg" alt="Apple tart with slices arranged in a rose" width="600" height="600" loading="lazy"><span>Apple rose tart</span></li>
+<li data-cursor="look"><img src="img/cotton-cheesecake.jpg" alt="Japanese cotton cheesecake dusted with icing sugar and topped with a strawberry" width="600" height="600" loading="lazy"><span>Japanese cotton cheesecake</span></li>
+<li data-cursor="look"><img src="img/marshmallow-cookies.jpg" alt="Chocolate chunk cookies topped with toasted marshmallows" width="600" height="600" loading="lazy"><span>Marshmallow chocolate cookies</span></li>
+<li data-cursor="look"><img src="img/layer-cake.jpg" alt="Sliced layer cake with drip icing" width="600" height="600" loading="lazy"><span>Layer cake</span></li>
+<li data-cursor="look"><img src="img/crepe-cake.jpg" alt="Stacked crepe cake" width="600" height="600" loading="lazy"><span>Crepe cake</span></li>
+<li data-cursor="look"><img src="img/cinnamon-roll.jpg" alt="Glazed cinnamon roll on a plate" width="600" height="600" loading="lazy"><span>Cinnamon roll</span></li>
+<li data-cursor="look"><img src="img/raspberry-brownies.jpg" alt="Brownies swirled with cheesecake and raspberry" width="600" height="600" loading="lazy"><span>Raspberry cheesecake brownies</span></li>
+<li data-cursor="look"><img src="img/chocolate-muffins.jpg" alt="Chocolate muffins in paper cases" width="600" height="600" loading="lazy"><span>Chocolate muffins</span></li>
+<li data-cursor="look"><img src="img/cupcakes.jpg" alt="Cupcakes with cream cheese frosting and sprinkles" width="600" height="600" loading="lazy"><span>Cupcakes</span></li></ul></div>
+            <figure class="plate" data-cursor="look"><img src="img/birthday-cake.jpg" alt="A friend, face covered by a cookie sticker, cutting Fiona's first birthday cake" width="750" height="1000" loading="lazy"><figcaption><b>Plate XI.</b>First birthday cake. Tastes better than it looks.</figcaption></figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" aria-labelledby="contact-h">
+        <div class="head"><h2 id="contact-h">con<span class="dotsep">·</span>tact</h2><span class="pos">verb</span><p class="gloss">To get in touch. Usage: highly encouraged.</p></div>
+        <div class="body"><p>I'm looking for entry-level software roles, whether that's backend, infrastructure, ML or research engineering, in Toronto, remote in Canada, or further afield. If anything here caught your eye, I'd love to hear from you.</p>
+          <a class="cta" href="mailto:hhpfiona@gmail.com">Email hhpfiona@gmail.com</a><a class="cta alt" href="https://github.com/hhpfiona">GitHub ↗</a></div>
+      </section>
+
+      <footer><span>© 2026 Fiona Hoang</span><span>Entry last revised November 2026</span></footer>
+    </div>
   </main>
-
-  <footer>© 2026 Fiona Hoang. Baked fresh in Toronto.</footer>
 </div>
 
 <script>
-  (function () {
-    var greetings = [
-      ["Hello", "English", "--indigo"], ["Xin chào", "Vietnamese", "--peach"], ["Bonjour", "French", "--sky"],
-      ["Hola", "Spanish", "--butter"], ["你好", "Mandarin", "--matcha"]
-    ];
-    var el = document.getElementById("hello");
-    var btn = document.getElementById("hello-btn");
-    if (!el || !btn) return;
-    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    var i = 0, timer = null;
-    function render() {
-      var g = greetings[i];
-      el.textContent = g[0] + " ";
-      var n = document.createElement("span");
-      n.className = "lang-name";
-      n.textContent = "in " + g[1];
-      el.appendChild(n);
-      btn.style.setProperty("--g-ink", "var(" + g[2] + ")");
-      btn.style.setProperty("--g-bg", "var(" + g[2] + "-soft)");
-    }
-    function next() {
-      i = (i + 1) % greetings.length;
-      if (reduce) { render(); return; }
-      el.classList.add("out");
-      setTimeout(function () { render(); el.classList.remove("out"); }, 300);
-    }
-    function start() { if (!reduce) timer = setInterval(next, 2800); }
-    btn.addEventListener("click", function () { clearInterval(timer); next(); start(); });
-    start();
-  })();
+document.documentElement.classList.add("js");
+(function () {
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Name intro
+  var hw = document.querySelector(".hw-big");
+  requestAnimationFrame(function () { setTimeout(function () { hw.classList.add("ready"); }, 150); });
+
+  // Highlighter marks
+  var marks = document.querySelectorAll("mark");
+  if (reduce || !("IntersectionObserver" in window)) { marks.forEach(function (m) { m.classList.add("on"); }); }
+  else {
+    var mio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("on"); mio.unobserve(e.target); } }); }, { threshold: 0.8 });
+    marks.forEach(function (m) { mio.observe(m); });
+  }
+
+  // Greeting
+  var g = [["Hello","English"],["Xin chào","Vietnamese"],["Bonjour","French"],["Hola","Spanish"],["你好","Mandarin"]], gi = 0;
+  var gw = document.getElementById("gw"), gl = document.getElementById("gl");
+  function nextG() { gi = (gi + 1) % g.length; gw.textContent = g[gi][0]; gl.textContent = "(" + g[gi][1] + ")"; }
+  document.getElementById("greet").addEventListener("click", nextG);
+  if (!reduce) setInterval(nextG, 3000);
+
+  // Toronto clock
+  var clock = document.getElementById("clock");
+  function tick() { try { clock.textContent = new Intl.DateTimeFormat("en-CA", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "America/Toronto" }).format(new Date()); } catch (e) {} }
+  tick(); setInterval(tick, 20000);
+
+  // Parse tree follows scroll
+  var ids = ["entry","background","experience","research","languages","life","contact"];
+  var items = Array.prototype.slice.call(document.querySelectorAll(".tree li"));
+  var topLinks = Array.prototype.slice.call(document.querySelectorAll(".topbar a"));
+  var prog = document.querySelector(".treewrap .prog");
+  function setActive(id) {
+    var idx = ids.indexOf(id) - 1;
+    items.forEach(function (li, i) { li.classList.toggle("active", i === idx); li.classList.toggle("seen", i < idx); });
+    topLinks.forEach(function (a) { a.classList.toggle("active", a.getAttribute("data-for") === id); });
+    if (prog) prog.style.height = idx < 0 ? "0px" : (items[idx].offsetTop + 22) + "px";
+  }
+  function onScroll() {
+    var line = window.innerHeight * 0.35, cur = "entry";
+    ids.forEach(function (id) { var el = document.getElementById(id); if (el && el.getBoundingClientRect().top <= line) cur = id; });
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) cur = "contact";
+    setActive(cur);
+  }
+  window.addEventListener("scroll", onScroll, { passive: true }); window.addEventListener("resize", onScroll); onScroll();
+
+  // Custom cursor: dot + trailing ring
+  if (reduce || !window.matchMedia("(pointer: fine)").matches) return;
+  var dot = document.querySelector(".cur-dot"), ring = document.querySelector(".cur-ring");
+  var mx = -100, my = -100, rx = -100, ry = -100, on = false;
+  document.addEventListener("mousemove", function (e) {
+    mx = e.clientX; my = e.clientY;
+    if (!on) { on = true; rx = mx; ry = my; document.body.classList.add("cursor-on"); }
+    dot.style.transform = "translate3d(" + mx + "px," + my + "px,0)";
+    var t = e.target;
+    document.body.classList.toggle("cur-look", !!(t.closest && t.closest("[data-cursor=look]")));
+    document.body.classList.toggle("cur-link", !!(t.closest && t.closest("a, button, .tree li, .senses li, .trans li")) && !(t.closest("[data-cursor=look]")));
+  });
+  document.addEventListener("mouseleave", function () { on = false; document.body.classList.remove("cursor-on"); });
+  (function loop() { rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18; ring.style.transform = "translate3d(" + rx + "px," + ry + "px,0)"; requestAnimationFrame(loop); })();
+})();
 </script>
 </body>
 </html>
