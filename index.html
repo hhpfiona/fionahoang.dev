@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fiona Hoang</title>
+<meta name="description" content="Fiona Hoang (Phuong Hanh Hoang) — research engineer working on multilingual NLP and language typology. University of Toronto, Computer Science and Psychology.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F3F5F7;
+    --ink: #161A24;
+    --muted: #586070;
+    --rule: #D5DAE2;
+    --accent: #3D35A0;
+    --accent-soft: #E4E2F6;
+    --serif: "Newsreader", Georgia, serif;
+    --sans: "Instrument Sans", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #12141B;
+      --ink: #E6E8EF;
+      --muted: #9BA2B2;
+      --rule: #2A2E3A;
+      --accent: #ABA4FF;
+      --accent-soft: #24223F;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #12141B;
+    --ink: #E6E8EF;
+    --muted: #9BA2B2;
+    --rule: #2A2E3A;
+    --accent: #ABA4FF;
+    --accent-soft: #24223F;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 1.1875rem;
+    line-height: 1.6;
+    font-optical-sizing: auto;
+  }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+  a:hover { text-decoration-thickness: 2px; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  .page {
+    max-width: 62rem;
+    margin: 0 auto;
+    padding: 0 16px 5rem;
+  }
+
+  /* Hero */
+  header.hero {
+    padding: 6rem 0 4.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .greeting {
+    font-family: var(--sans);
+    font-size: 1rem;
+    color: var(--muted);
+    margin: 0 0 1.25rem;
+    height: 1.6em;
+  }
+  .greeting span {
+    display: inline-block;
+    color: var(--accent);
+    font-weight: 500;
+    transition: opacity 400ms ease, transform 400ms ease;
+  }
+  .greeting span.out { opacity: 0; transform: translateY(-0.35em); }
+  h1 {
+    font-weight: 500;
+    font-size: clamp(3rem, 9vw, 6.25rem);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    margin: 0;
+  }
+  .alt-name {
+    font-style: italic;
+    color: var(--muted);
+    font-size: clamp(1.15rem, 2.2vw, 1.4rem);
+    margin: 0.75rem 0 0;
+  }
+  .lede {
+    max-width: 34rem;
+    font-size: clamp(1.25rem, 2.3vw, 1.5rem);
+    line-height: 1.45;
+    margin: 2.5rem 0 0;
+  }
+  .links {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    margin: 2rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Sections: name in a left gutter on wide screens */
+  section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem 3rem;
+    padding: 3.5rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  section:last-of-type { border-bottom: 0; }
+  @media (min-width: 52rem) {
+    section { grid-template-columns: 11rem 1fr; }
+  }
+  h2 {
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0.35rem 0 0;
+    color: var(--muted);
+  }
+  .body { max-width: 40rem; }
+  .body > p:first-child { margin-top: 0; }
+
+  /* Entries */
+  .entry { margin: 0 0 2.25rem; }
+  .entry:last-child { margin-bottom: 0; }
+  .entry h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin: 0;
+  }
+  .meta {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin: 0.25rem 0 0.6rem;
+  }
+  .entry p { margin: 0.4rem 0 0; }
+
+  /* Research: venue as a tab-like marker */
+  .papers { list-style: none; margin: 0; padding: 0; }
+  .papers li {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    padding: 0 0 1.75rem;
+  }
+  @media (min-width: 40rem) {
+    .papers li { grid-template-columns: 7.5rem 1fr; gap: 1.25rem; }
+  }
+  .venue {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 4px;
+    padding: 0.2rem 0.55rem;
+    justify-self: start;
+    align-self: start;
+    margin-top: 0.3rem;
+    white-space: nowrap;
+  }
+  .papers a.title {
+    color: var(--ink);
+    font-size: 1.2rem;
+    line-height: 1.4;
+    text-decoration-color: var(--rule);
+  }
+  .papers a.title:hover { text-decoration-color: var(--accent); }
+  .papers .role { font-family: var(--sans); font-size: 0.9rem; color: var(--muted); margin: 0.3rem 0 0; }
+
+  footer {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    color: var(--muted);
+    padding-top: 2rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .greeting span { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="hero">
+    <p class="greeting" aria-hidden="true"><span id="hello">Hello</span></p>
+    <h1>Fiona Hoang</h1>
+    <p class="alt-name">Publishes as Phuong Hanh Hoang</p>
+    <p class="lede">I build multilingual NLP resources and the infrastructure that runs models, with a background in both computer science and psychology.</p>
+    <ul class="links">
+      <li><a href="#research">Research</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="mailto:hhpfiona@gmail.com">hhpfiona@gmail.com</a></li>
+      <li><a href="mailto:hhpfiona@gmail.com">Email</a></li>
+      <li><a href="https://github.com/hhpfiona">GitHub</a></li>
+      <li><a href="https://aclanthology.org/people/phuong-hanh-hoang/">ACL Anthology</a></li>
+    </ul>
+  </header>
+
+  <main>
+    <section id="about" aria-labelledby="about-h">
+      <h2 id="about-h">About</h2>
+      <div class="body">
+        <p>I'm a research engineer at the Lee Language Lab at the University of Toronto, where I work on URIEL+, a knowledge base describing how the world's languages relate to one another. I also spent a year as a co-op at Huawei Canada's Noah's Ark Lab, building mobile AI infrastructure.</p>
+        <p>I graduated from the University of Toronto in 2026 with an Honours Bachelor of Science, with High Distinction, in Computer Science (focused on NLP) and Psychology. I'm fluent in English and Vietnamese, advanced in French, and learning Spanish and Mandarin.</p>
+      </div>
+    </section>
+
+    <section id="research" aria-labelledby="research-h">
+      <h2 id="research-h">Research</h2>
+      <div class="body">
+        <ul class="papers">
+          <li>
+            <span class="venue">EACL 2026</span>
+            <div>
+              <a class="title" href="https://aclanthology.org/2026.eacl-srw.8/">Modality Matching Matters: Calibrating Language Distances for Cross-Lingual Transfer in URIEL+</a>
+              <p class="role">Student Research Workshop</p>
+            </div>
+          </li>
+          <li>
+            <span class="venue">LREC 2026</span>
+            <div>
+              <a class="title" href="https://aclanthology.org/2026.lrec-1.863/">Simple Additions, Substantial Gains: Expanding Scripts, Languages, and Lineage Coverage in URIEL+</a>
+            </div>
+          </li>
+          <li>
+            <span class="venue">EMNLP 2025</span>
+            <div>
+              <a class="title" href="https://aclanthology.org/2025.emnlp-main.1310/">Less is More: The Effectiveness of Compact Typological Language Representations</a>
+            </div>
+          </li>
+          <li>
+            <span class="venue">COLING 2025</span>
+            <div>
+              <a class="title" href="https://aclanthology.org/2025.coling-main.463/">URIEL+: Enhancing Linguistic Inclusion and Usability in a Typological and Multilingual Knowledge Base</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="experience" aria-labelledby="experience-h">
+      <h2 id="experience-h">Experience</h2>
+      <div class="body">
+        <div class="entry">
+          <h3>Research Engineer, Lee Language Lab</h3>
+          <p class="meta">University of Toronto, with Prof. En-Shiun Annie Lee<br>2024 – Present</p>
+          <p>Extended the URIEL+ typological knowledge base and co-authored four papers built on it. Reviewed code for the URIEL+ papers.</p>
+        </div>
+        <div class="entry">
+          <h3>Software Engineer Co-op, Huawei Canada</h3>
+          <p class="meta">Noah's Ark Lab, Mobile AI Infrastructure<br>May 2025 – May 2026</p>
+          <p>Self-hosted model inference on NVIDIA GPUs, including serving Qwen2-VL locally instead of through an API. Worked on a device framework that handles device failures, timeouts and retries, with automated tests, and reviewed teammates' code.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" aria-labelledby="projects-h">
+      <h2 id="projects-h">Projects</h2>
+      <div class="body">
+        <div class="entry">
+          <h3><a href="https://github.com/hhpfiona/PluralTree">PluralTree</a></h3>
+          <p class="meta">LLM systems research, University of Toronto, 2026</p>
+          <p>A work-in-progress research pipeline for improving how culturally accurate a language model's answers are, built in the University of Toronto's LLM systems research course.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-h">
+      <h2 id="contact-h">Contact</h2>
+      <div class="body">
+        <p>I'm looking for entry-level roles in ML and AI engineering, research engineering and LLM evaluation, in Toronto, remote in Canada, or elsewhere. Email me at <a href="mailto:hhpfiona@gmail.com">hhpfiona@gmail.com</a>, or find my code on <a href="https://github.com/hhpfiona">GitHub</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 Fiona Hoang</footer>
+</div>
+
+<script>
+  (function () {
+    var words = ["Hello", "Xin chào", "Bonjour"];
+    var el = document.getElementById("hello");
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!el || reduce) return;
+    var i = 0;
+    setInterval(function () {
+      el.classList.add("out");
+      setTimeout(function () {
+        i = (i + 1) % words.length;
+        el.textContent = words[i];
+        el.classList.remove("out");
+      }, 400);
+    }, 2600);
+  })();
+</script>
+</body>
+</html>
