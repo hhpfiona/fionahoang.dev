@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fiona Hoang</title>
-<meta name="description" content="Fiona Hoang (Phuong Hanh Hoang) — research engineer working on multilingual NLP and language typology. University of Toronto, Computer Science and Psychology.">
+<meta name="description" content="Fiona Hoang, software engineer. AI infrastructure at Huawei Canada, research engineering at the University of Toronto. Computer Science and Psychology.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -212,14 +212,31 @@
   .langs .level.fluent { color: var(--accent); }
   .langs .level.advanced { color: var(--ink); }
   .langs-note { margin: 1.5rem 0 0; }
+  .langs ~ p { margin: 0.9rem 0 0; }
+
+  /* Hero with portrait */
+  .hero-grid { display: grid; gap: 2rem; align-items: center; }
+  .portrait { width: 9rem; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 6px; display: block; }
+  @media (min-width: 52rem) {
+    .hero-grid { grid-template-columns: 1fr 14rem; gap: 3rem; }
+    .portrait { width: 100%; order: 2; }
+  }
+  .vi-name { font-size: clamp(1.25rem, 2.6vw, 1.6rem); color: var(--muted); margin: 0.6rem 0 0; }
 
   /* Off the clock */
-  .hobbies { display: grid; gap: 1.75rem; }
-  .hobby { display: grid; grid-template-columns: 3rem 1fr; gap: 1rem; align-items: start; }
-  .hobby svg { width: 3rem; height: 3rem; color: var(--accent); }
-  .hobby h3 { font-size: 1.2rem; font-weight: 600; margin: 0.1rem 0 0.2rem; }
-  .hobby p { margin: 0; }
-  .hobby p + p { margin-top: 0.6rem; }
+  .hobby { margin: 0 0 3rem; }
+  .hobby:last-child { margin-bottom: 0; }
+  .hobby h3 { font-size: 1.3rem; font-weight: 600; margin: 0 0 0.4rem; }
+  .hobby p { margin: 0 0 0.6rem; }
+  figure { margin: 1.25rem 0 0; }
+  figure img { width: 100%; height: auto; display: block; border-radius: 6px; }
+  figcaption { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); margin-top: 0.4rem; }
+  .bakes { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+  .bakes li:nth-child(9) { display: none; }
+  @media (min-width: 40rem) { .bakes { grid-template-columns: repeat(3, 1fr); } .bakes li:nth-child(9) { display: block; } }
+  .bakes img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; display: block; border-radius: 6px; }
+  .bakes span { display: block; font-family: var(--sans); font-size: 0.8rem; color: var(--muted); margin-top: 0.3rem; line-height: 1.35; }
+  .research-note { font-family: var(--sans); font-size: 0.9rem; color: var(--muted); margin: 0 0 1.5rem; }
 
   footer {
     font-family: var(--sans);
@@ -237,49 +254,54 @@
 <div class="page">
 
   <header class="hero">
-    <p class="greeting"><button type="button" id="hello-btn" aria-label="Show a greeting in another language"><span id="hello">Hello <span class="lang-name">in English</span></span></button></p>
-    <h1>Fiona Hoang</h1>
-    <p class="alt-name">Publishes as Phuong Hanh Hoang. In Vietnamese, <span lang="vi">Hoàng Hạnh Phương</span>.</p>
-    <p class="lede">I work on getting language technology to understand more of the world's languages, and on the unglamorous infrastructure that keeps models running.</p>
-    <ul class="links">
-      <li><a href="#research">Research</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#languages">Languages</a></li>
-      <li><a href="mailto:hhpfiona@gmail.com">Email</a></li>
-      <li><a href="https://github.com/hhpfiona">GitHub</a></li>
-      <li><a href="https://aclanthology.org/people/phuong-hanh-hoang/">ACL Anthology</a></li>
-    </ul>
+    <div class="hero-grid">
+      <img class="portrait" src="img/portrait.jpg" alt="Fiona Hoang smiling at a volleyball tournament" width="400" height="500">
+      <div>
+        <p class="greeting"><button type="button" id="hello-btn" aria-label="Show a greeting in another language"><span id="hello">Hello <span class="lang-name">in English</span></span></button></p>
+        <h1>Fiona Hoang</h1>
+        <p class="vi-name" lang="vi">Hoàng Hạnh Phương</p>
+        <p class="lede">I'm a software engineer. I've built AI infrastructure at Huawei and research tools at the University of Toronto, and I'm open to whatever comes next: backend, infrastructure, ML, or something I haven't tried yet.</p>
+        <ul class="links">
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#off-the-clock">Off the clock</a></li>
+          <li><a href="mailto:hhpfiona@gmail.com">Email</a></li>
+          <li><a href="https://github.com/hhpfiona">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
   </header>
 
   <main>
     <section id="about" aria-labelledby="about-h">
       <h2 id="about-h">About</h2>
       <div class="body">
-        <p>I'm a research engineer at the Lee Language Lab at the University of Toronto, where I work on URIEL+, a knowledge base describing how the world's languages relate to one another. I also spent a year as a co-op at Huawei Canada's Noah's Ark Lab, building mobile AI infrastructure.</p>
-        <p>I graduated from the University of Toronto in 2026 with an Honours Bachelor of Science, with High Distinction, in Computer Science (focused on NLP) and Psychology.</p>
-        <p>I studied psychology because I care about mental health, and stayed for the cognitive science: how people think, and how we sort the world into categories that feel obvious right up until someone asks us to write them down. Language models have the same problem, with less excuse.</p>
+        <p>Most recently, I spent a year as a software engineer co-op at Huawei Canada's Noah's Ark Lab, working on mobile AI infrastructure. Before and alongside that, I was a research engineer at the University of Toronto's Lee Language Lab, where I worked on URIEL+, a database of how the world's languages relate to each other, and co-authored four papers.</p>
+        <p>I graduated from the University of Toronto in 2026 with an Honours Bachelor of Science, with High Distinction, in Computer Science and Psychology.</p>
+        <p>I studied psychology because I care about mental health. Then I took a few cognitive science courses and got hooked on how people think, and especially on how we sort things into categories. Half of software engineering is arguing about which box something belongs in, so it's turned out more useful than I expected.</p>
       </div>
     </section>
 
-
-    <section id="languages" aria-labelledby="languages-h">
-      <h2 id="languages-h">Languages</h2>
+    <section id="experience" aria-labelledby="experience-h">
+      <h2 id="experience-h">Experience</h2>
       <div class="body">
-        <ul class="langs">
-          <li><span class="word" lang="en">Hello</span><span class="info">English, <span class="level fluent">fluent</span></span></li>
-          <li><span class="word" lang="vi">Xin chào</span><span class="info">Vietnamese, <span class="level fluent">fluent</span></span></li>
-          <li><span class="word" lang="fr">Bonjour</span><span class="info">French, <span class="level advanced">advanced</span></span></li>
-          <li><span class="word" lang="es">Hola</span><span class="info">Spanish, <span class="level">learning</span></span></li>
-          <li><span class="word" lang="zh">你好</span><span class="info">Mandarin, <span class="level">learning</span></span></li>
-        </ul>
-        <p class="langs-note">When I was younger, I promised myself I'd be fluent in ten languages by thirty, because polyglots were the coolest people I could imagine. The current count is five spoken, two fluently, with French doing its best to become the third. Since then I've picked up Python and a handful of other programming languages, and I've decided they count. Nobody has told me otherwise.</p>
-        <p>That promise is how I ended up in multilingual NLP. If I can't speak every language myself, I can at least help build the tools that do, including for endangered languages, and for dead ones, which have the advantage of never complaining about the output.</p>
+        <div class="entry">
+          <h3>Research Engineer, Lee Language Lab</h3>
+          <p class="meta">University of Toronto, with Prof. En-Shiun Annie Lee<br>2024 – Aug 2026</p>
+          <p>Extended the URIEL+ typological knowledge base and co-authored four papers built on it. Reviewed code for the URIEL+ papers.</p>
+        </div>
+        <div class="entry">
+          <h3>Software Engineer Co-op, Huawei Canada</h3>
+          <p class="meta">Noah's Ark Lab, Mobile AI Infrastructure<br>May 2025 – May 2026</p>
+          <p>Self-hosted model inference on NVIDIA GPUs, including serving Qwen2-VL locally instead of through an API. Worked on a device framework that handles device failures, timeouts and retries, with automated tests, and reviewed teammates' code.</p>
+        </div>
       </div>
     </section>
 
     <section id="research" aria-labelledby="research-h">
       <h2 id="research-h">Research</h2>
       <div class="body">
+        <p class="research-note">Published as Phuong Hanh Hoang. Full list on the <a href="https://aclanthology.org/people/phuong-hanh-hoang/">ACL Anthology</a>.</p>
         <ul class="papers">
           <li>
             <span class="venue">EACL 2026</span>
@@ -310,22 +332,6 @@
       </div>
     </section>
 
-    <section id="experience" aria-labelledby="experience-h">
-      <h2 id="experience-h">Experience</h2>
-      <div class="body">
-        <div class="entry">
-          <h3>Research Engineer, Lee Language Lab</h3>
-          <p class="meta">University of Toronto, with Prof. En-Shiun Annie Lee<br>2024 – Present</p>
-          <p>Extended the URIEL+ typological knowledge base and co-authored four papers built on it. Reviewed code for the URIEL+ papers.</p>
-        </div>
-        <div class="entry">
-          <h3>Software Engineer Co-op, Huawei Canada</h3>
-          <p class="meta">Noah's Ark Lab, Mobile AI Infrastructure<br>May 2025 – May 2026</p>
-          <p>Self-hosted model inference on NVIDIA GPUs, including serving Qwen2-VL locally instead of through an API. Worked on a device framework that handles device failures, timeouts and retries, with automated tests, and reviewed teammates' code.</p>
-        </div>
-      </div>
-    </section>
-
     <section id="projects" aria-labelledby="projects-h">
       <h2 id="projects-h">Projects</h2>
       <div class="body">
@@ -337,34 +343,50 @@
       </div>
     </section>
 
+    <section id="languages" aria-labelledby="languages-h">
+      <h2 id="languages-h">Languages</h2>
+      <div class="body">
+        <ul class="langs">
+          <li><span class="word" lang="en">Hello</span><span class="info">English, <span class="level fluent">fluent</span></span></li>
+          <li><span class="word" lang="vi">Xin chào</span><span class="info">Vietnamese, <span class="level fluent">fluent</span></span></li>
+          <li><span class="word" lang="fr">Bonjour</span><span class="info">French, <span class="level advanced">advanced</span></span></li>
+          <li><span class="word" lang="es">Hola</span><span class="info">Spanish, <span class="level">learning</span></span></li>
+          <li><span class="word" lang="zh">你好</span><span class="info">Mandarin, <span class="level">learning</span></span></li>
+        </ul>
+        <p class="langs-note">When I was younger, I told myself I'd be fluent in ten languages by thirty, because I thought polyglots were the coolest people alive.</p>
+        <p>I'm at five. I'm fluent in two of them, which is cheating a bit: Vietnamese is my mother tongue, so I should be good at it regardless, and I live in Canada, so English was never optional. French is getting there. Spanish and Mandarin are getting there more slowly.</p>
+        <p>Somewhere along the way I also learned Python, then a few more programming languages. I've decided those count. It's my childhood goal, so I set the rules.</p>
+        <p>It's also why my research ended up in multilingual NLP. I care about the languages technology tends to skip, the endangered ones and the dead ones too. The dead ones, at least, never complain about the output.</p>
+      </div>
+    </section>
 
     <section id="off-the-clock" aria-labelledby="off-h">
       <h2 id="off-h">Off the clock</h2>
-      <div class="body hobbies">
+      <div class="body">
         <div class="hobby">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-            <path d="M24 30v14"/>
-            <path d="M24 30c-9-2-12-12-9-20 2-5 6-7 9-7s7 2 9 7c3 8 0 18-9 20z"/>
-            <path d="M24 30c-4-3-5-11-3-18 1-4 2-6 3-6s2 2 3 6c2 7 1 15-3 18z"/>
-          </svg>
-          <div>
-            <h3>Baking</h3>
-            <p>Mostly cookies, increasingly muffins, and, when I'm feeling ambitious, brownies, banana bread, pies, scones, cheesecake and cream puffs. My most requested recipe is matcha cookies, with white chocolate and either marshmallow or roasted macadamia. I recently made my first birthday cake. It tasted better than it looked, which I maintain is the correct order of priorities.</p>
-            <p>Recipes are small experiments with fast feedback, and my friends are happy to be the evaluation set.</p>
-          </div>
+          <h3>Volleyball</h3>
+          <p>I play in several leagues as a setter, which means my job is to make other people look good and receive none of the credit. It was excellent preparation for infrastructure work.</p>
+          <figure>
+            <img src="img/volleyball-set.jpg" alt="Fiona, in a purple jersey, setting the ball at an outdoor volleyball tournament" width="1400" height="949" loading="lazy">
+            <figcaption>Setting at an outdoor tournament.</figcaption>
+          </figure>
         </div>
         <div class="hobby">
-          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
-            <circle cx="24" cy="24" r="19"/>
-            <path d="M24 5c-3 7-3 15 0 19"/>
-            <path d="M24 24c4 3 11 5 18 3"/>
-            <path d="M24 24c-4 3-8 9-9 17"/>
-            <path d="M11 10c6 2 10 7 13 14"/>
-          </svg>
-          <div>
-            <h3>Volleyball</h3>
-            <p>I play in several leagues as a setter, which means my job is to make other people look good and receive none of the credit. It was excellent preparation for infrastructure work.</p>
-          </div>
+          <h3>Baking</h3>
+          <p>Mostly cookies, and lately a lot more muffins. When I'm feeling ambitious: brownies, banana bread, pies, scones, cheesecake, cream puffs. My most requested recipe is matcha cookies, with white chocolate and either marshmallow or roasted macadamia.</p>
+          <p>I recently made my first birthday cake. It tasted better than it looked, which I maintain is the correct order of priorities.</p>
+          <p>Recipes are small experiments with fast feedback, and my friends are happy to be the evaluation set.</p>
+          <ul class="bakes">
+            <li><img src="img/apple-rose-tart.jpg" alt="Apple tart with slices arranged in a rose" loading="lazy" width="600" height="600"><span>Apple rose tart</span></li>
+            <li><img src="img/cotton-cheesecake.jpg" alt="Japanese cotton cheesecake dusted with icing sugar and topped with a strawberry" loading="lazy" width="600" height="600"><span>Japanese cotton cheesecake</span></li>
+            <li><img src="img/marshmallow-cookies.jpg" alt="Chocolate chunk cookies topped with toasted marshmallows" loading="lazy" width="600" height="600"><span>Marshmallow chocolate cookies</span></li>
+            <li><img src="img/layer-cake.jpg" alt="Sliced layer cake with drip icing" loading="lazy" width="600" height="600"><span>Layer cake</span></li>
+            <li><img src="img/crepe-cake.jpg" alt="Stacked crepe cake" loading="lazy" width="600" height="600"><span>Crepe cake</span></li>
+            <li><img src="img/cinnamon-roll.jpg" alt="Glazed cinnamon roll on a plate" loading="lazy" width="600" height="600"><span>Cinnamon roll</span></li>
+            <li><img src="img/raspberry-brownies.jpg" alt="Brownies swirled with cheesecake and raspberry" loading="lazy" width="600" height="600"><span>Raspberry cheesecake brownies</span></li>
+            <li><img src="img/chocolate-muffins.jpg" alt="Chocolate muffins in paper cases" loading="lazy" width="600" height="600"><span>Chocolate muffins</span></li>
+            <li><img src="img/cupcakes.jpg" alt="Cupcakes with cream cheese frosting and sprinkles" loading="lazy" width="600" height="600"><span>Cupcakes</span></li>
+          </ul>
         </div>
       </div>
     </section>
@@ -372,7 +394,7 @@
     <section id="contact" aria-labelledby="contact-h">
       <h2 id="contact-h">Contact</h2>
       <div class="body">
-        <p>I'm looking for entry-level roles in ML and AI engineering, research engineering and LLM evaluation, in Toronto, remote in Canada, or elsewhere. Email me at <a href="mailto:hhpfiona@gmail.com">hhpfiona@gmail.com</a>, or find my code on <a href="https://github.com/hhpfiona">GitHub</a>.</p>
+        <p>I'm looking for entry-level software roles, whether that's backend, infrastructure, ML or research engineering, in Toronto, remote in Canada, or elsewhere. Email me at <a href="mailto:hhpfiona@gmail.com">hhpfiona@gmail.com</a>, or find my code on <a href="https://github.com/hhpfiona">GitHub</a>.</p>
       </div>
     </section>
   </main>
