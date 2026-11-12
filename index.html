@@ -219,6 +219,7 @@
   .hobby svg { width: 3rem; height: 3rem; color: var(--accent); }
   .hobby h3 { font-size: 1.2rem; font-weight: 600; margin: 0.1rem 0 0.2rem; }
   .hobby p { margin: 0; }
+  .hobby p + p { margin-top: 0.6rem; }
 
   footer {
     font-family: var(--sans);
@@ -238,8 +239,8 @@
   <header class="hero">
     <p class="greeting"><button type="button" id="hello-btn" aria-label="Show a greeting in another language"><span id="hello">Hello <span class="lang-name">in English</span></span></button></p>
     <h1>Fiona Hoang</h1>
-    <p class="alt-name">Publishes as Phuong Hanh Hoang</p>
-    <p class="lede">I build multilingual NLP resources and the infrastructure that runs models, with a background in both computer science and psychology.</p>
+    <p class="alt-name">Publishes as Phuong Hanh Hoang. In Vietnamese, <span lang="vi">Hoàng Hạnh Phương</span>.</p>
+    <p class="lede">I work on getting language technology to understand more of the world's languages, and on the unglamorous infrastructure that keeps models running.</p>
     <ul class="links">
       <li><a href="#research">Research</a></li>
       <li><a href="#experience">Experience</a></li>
@@ -256,7 +257,7 @@
       <div class="body">
         <p>I'm a research engineer at the Lee Language Lab at the University of Toronto, where I work on URIEL+, a knowledge base describing how the world's languages relate to one another. I also spent a year as a co-op at Huawei Canada's Noah's Ark Lab, building mobile AI infrastructure.</p>
         <p>I graduated from the University of Toronto in 2026 with an Honours Bachelor of Science, with High Distinction, in Computer Science (focused on NLP) and Psychology.</p>
-        <p>The psychology half of my degree is the half that asks how people actually think and communicate. It's why I care about evaluation: a model that scores well on a benchmark still has to make sense to the person reading its answer, in their language and their culture.</p>
+        <p>I studied psychology because I care about mental health, and stayed for the cognitive science: how people think, and how we sort the world into categories that feel obvious right up until someone asks us to write them down. Language models have the same problem, with less excuse.</p>
       </div>
     </section>
 
@@ -271,7 +272,8 @@
           <li><span class="word" lang="es">Hola</span><span class="info">Spanish, <span class="level">learning</span></span></li>
           <li><span class="word" lang="zh">你好</span><span class="info">Mandarin, <span class="level">learning</span></span></li>
         </ul>
-        <p class="langs-note">Speaking five languages is a big part of why I work on multilingual NLP. Most of the world's languages are still underserved by language technology, and I want the tools I build to work for all of them.</p>
+        <p class="langs-note">When I was younger, I promised myself I'd be fluent in ten languages by thirty, because polyglots were the coolest people I could imagine. The current count is five spoken, two fluently, with French doing its best to become the third. Since then I've picked up Python and a handful of other programming languages, and I've decided they count. Nobody has told me otherwise.</p>
+        <p>That promise is how I ended up in multilingual NLP. If I can't speak every language myself, I can at least help build the tools that do, including for endangered languages, and for dead ones, which have the advantage of never complaining about the output.</p>
       </div>
     </section>
 
@@ -347,6 +349,7 @@
           </svg>
           <div>
             <h3>Baking</h3>
+            <p>Mostly cookies, increasingly muffins, and, when I'm feeling ambitious, brownies, banana bread, pies, scones, cheesecake and cream puffs. My most requested recipe is matcha cookies, with white chocolate and either marshmallow or roasted macadamia. I recently made my first birthday cake. It tasted better than it looked, which I maintain is the correct order of priorities.</p>
             <p>Recipes are small experiments with fast feedback, and my friends are happy to be the evaluation set.</p>
           </div>
         </div>
@@ -360,7 +363,7 @@
           </svg>
           <div>
             <h3>Volleyball</h3>
-            <p>I play volleyball, which is the best reminder I know that good results come from a team passing well to each other.</p>
+            <p>I play in several leagues as a setter, which means my job is to make other people look good and receive none of the credit. It was excellent preparation for infrastructure work.</p>
           </div>
         </div>
       </div>
