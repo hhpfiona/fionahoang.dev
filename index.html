@@ -180,6 +180,46 @@
   .papers a.title:hover { text-decoration-color: var(--accent); }
   .papers .role { font-family: var(--sans); font-size: 0.9rem; color: var(--muted); margin: 0.3rem 0 0; }
 
+
+  /* Greeting button */
+  .greeting button {
+    font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer;
+  }
+  .greeting button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  .greeting .lang-name { color: var(--muted); font-weight: 400; }
+
+  /* Languages */
+  .langs { list-style: none; margin: 0; padding: 0; }
+  .langs li {
+    display: grid;
+    grid-template-columns: minmax(8.5rem, 11rem) 1fr;
+    align-items: baseline;
+    gap: 1rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .langs li:first-child { padding-top: 0; }
+  .langs li:last-child { border-bottom: 0; }
+  .langs .word {
+    font-size: clamp(1.6rem, 4vw, 2.1rem);
+    line-height: 1.15;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .langs .word[lang="zh"] { font-family: "Songti SC", "Noto Serif SC", "Noto Serif CJK SC", serif; }
+  .langs .info { font-family: var(--sans); font-size: 0.95rem; color: var(--muted); }
+  .langs .level { font-weight: 600; }
+  .langs .level.fluent { color: var(--accent); }
+  .langs .level.advanced { color: var(--ink); }
+  .langs-note { margin: 1.5rem 0 0; }
+
+  /* Off the clock */
+  .hobbies { display: grid; gap: 1.75rem; }
+  .hobby { display: grid; grid-template-columns: 3rem 1fr; gap: 1rem; align-items: start; }
+  .hobby svg { width: 3rem; height: 3rem; color: var(--accent); }
+  .hobby h3 { font-size: 1.2rem; font-weight: 600; margin: 0.1rem 0 0.2rem; }
+  .hobby p { margin: 0; }
+
   footer {
     font-family: var(--sans);
     font-size: 0.85rem;
@@ -196,14 +236,14 @@
 <div class="page">
 
   <header class="hero">
-    <p class="greeting" aria-hidden="true"><span id="hello">Hello</span></p>
+    <p class="greeting"><button type="button" id="hello-btn" aria-label="Show a greeting in another language"><span id="hello">Hello <span class="lang-name">in English</span></span></button></p>
     <h1>Fiona Hoang</h1>
     <p class="alt-name">Publishes as Phuong Hanh Hoang</p>
     <p class="lede">I build multilingual NLP resources and the infrastructure that runs models, with a background in both computer science and psychology.</p>
     <ul class="links">
       <li><a href="#research">Research</a></li>
       <li><a href="#experience">Experience</a></li>
-      <li><a href="mailto:hhpfiona@gmail.com">hhpfiona@gmail.com</a></li>
+      <li><a href="#languages">Languages</a></li>
       <li><a href="mailto:hhpfiona@gmail.com">Email</a></li>
       <li><a href="https://github.com/hhpfiona">GitHub</a></li>
       <li><a href="https://aclanthology.org/people/phuong-hanh-hoang/">ACL Anthology</a></li>
@@ -215,7 +255,23 @@
       <h2 id="about-h">About</h2>
       <div class="body">
         <p>I'm a research engineer at the Lee Language Lab at the University of Toronto, where I work on URIEL+, a knowledge base describing how the world's languages relate to one another. I also spent a year as a co-op at Huawei Canada's Noah's Ark Lab, building mobile AI infrastructure.</p>
-        <p>I graduated from the University of Toronto in 2026 with an Honours Bachelor of Science, with High Distinction, in Computer Science (focused on NLP) and Psychology. I'm fluent in English and Vietnamese, advanced in French, and learning Spanish and Mandarin.</p>
+        <p>I graduated from the University of Toronto in 2026 with an Honours Bachelor of Science, with High Distinction, in Computer Science (focused on NLP) and Psychology.</p>
+        <p>The psychology half of my degree is the half that asks how people actually think and communicate. It's why I care about evaluation: a model that scores well on a benchmark still has to make sense to the person reading its answer, in their language and their culture.</p>
+      </div>
+    </section>
+
+
+    <section id="languages" aria-labelledby="languages-h">
+      <h2 id="languages-h">Languages</h2>
+      <div class="body">
+        <ul class="langs">
+          <li><span class="word" lang="en">Hello</span><span class="info">English, <span class="level fluent">fluent</span></span></li>
+          <li><span class="word" lang="vi">Xin chào</span><span class="info">Vietnamese, <span class="level fluent">fluent</span></span></li>
+          <li><span class="word" lang="fr">Bonjour</span><span class="info">French, <span class="level advanced">advanced</span></span></li>
+          <li><span class="word" lang="es">Hola</span><span class="info">Spanish, <span class="level">learning</span></span></li>
+          <li><span class="word" lang="zh">你好</span><span class="info">Mandarin, <span class="level">learning</span></span></li>
+        </ul>
+        <p class="langs-note">Speaking five languages is a big part of why I work on multilingual NLP. Most of the world's languages are still underserved by language technology, and I want the tools I build to work for all of them.</p>
       </div>
     </section>
 
@@ -279,6 +335,37 @@
       </div>
     </section>
 
+
+    <section id="off-the-clock" aria-labelledby="off-h">
+      <h2 id="off-h">Off the clock</h2>
+      <div class="body hobbies">
+        <div class="hobby">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path d="M24 30v14"/>
+            <path d="M24 30c-9-2-12-12-9-20 2-5 6-7 9-7s7 2 9 7c3 8 0 18-9 20z"/>
+            <path d="M24 30c-4-3-5-11-3-18 1-4 2-6 3-6s2 2 3 6c2 7 1 15-3 18z"/>
+          </svg>
+          <div>
+            <h3>Baking</h3>
+            <p>Recipes are small experiments with fast feedback, and my friends are happy to be the evaluation set.</p>
+          </div>
+        </div>
+        <div class="hobby">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <circle cx="24" cy="24" r="19"/>
+            <path d="M24 5c-3 7-3 15 0 19"/>
+            <path d="M24 24c4 3 11 5 18 3"/>
+            <path d="M24 24c-4 3-8 9-9 17"/>
+            <path d="M11 10c6 2 10 7 13 14"/>
+          </svg>
+          <div>
+            <h3>Volleyball</h3>
+            <p>I play volleyball, which is the best reminder I know that good results come from a team passing well to each other.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="contact" aria-labelledby="contact-h">
       <h2 id="contact-h">Contact</h2>
       <div class="body">
@@ -292,19 +379,32 @@
 
 <script>
   (function () {
-    var words = ["Hello", "Xin chào", "Bonjour"];
+    var greetings = [
+      ["Hello", "English"], ["Xin chào", "Vietnamese"], ["Bonjour", "French"],
+      ["Hola", "Spanish"], ["你好", "Mandarin"]
+    ];
     var el = document.getElementById("hello");
+    var btn = document.getElementById("hello-btn");
+    if (!el || !btn) return;
     var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!el || reduce) return;
-    var i = 0;
-    setInterval(function () {
+    var i = 0, timer = null;
+    function render() {
+      el.innerHTML = "";
+      el.appendChild(document.createTextNode(greetings[i][0] + " "));
+      var n = document.createElement("span");
+      n.className = "lang-name";
+      n.textContent = "in " + greetings[i][1];
+      el.appendChild(n);
+    }
+    function next() {
+      i = (i + 1) % greetings.length;
+      if (reduce) { render(); return; }
       el.classList.add("out");
-      setTimeout(function () {
-        i = (i + 1) % words.length;
-        el.textContent = words[i];
-        el.classList.remove("out");
-      }, 400);
-    }, 2600);
+      setTimeout(function () { render(); el.classList.remove("out"); }, 400);
+    }
+    function start() { if (!reduce) timer = setInterval(next, 2800); }
+    btn.addEventListener("click", function () { clearInterval(timer); next(); start(); });
+    start();
   })();
 </script>
 </body>
