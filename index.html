@@ -143,7 +143,6 @@ mark.on { background-size: 100% 100%; }
 .plate:hover img { transform: translateY(-4px) rotate(-0.6deg); border-color: var(--accent); }
 .plate figcaption { font: 400 0.9rem/1.45 var(--serif); color: var(--muted); margin-top: 0.6rem; transition: color .2s; }
 .plate:hover figcaption { color: var(--ink); }
-.plate figcaption b { font: 600 0.75rem var(--sans); letter-spacing: 0.05em; color: var(--accent); margin-right: 0.35rem; }
 .hero-plate img { aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 18%; }
 
 /* Marquee */
@@ -157,7 +156,7 @@ mark.on { background-size: 100% 100%; }
 
 /* Section entries */
 section { display: grid; gap: 1.25rem 3rem; padding: 4.5rem 0; border-bottom: 1px solid var(--rule); scroll-margin-top: 3rem; }
-@media (min-width: 52rem) { section { grid-template-columns: 13rem 1fr; } }
+@media (min-width: 52rem) { section { grid-template-columns: 13rem 1fr; } section.wide { grid-template-columns: 1fr; } section.wide .head { position: static; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.2rem 1rem; } section.wide .head .gloss { margin: 0; flex-basis: 100%; } }
 .head { align-self: start; }
 @media (min-width: 52rem) { .head { position: sticky; top: 2rem; } }
 h2 { display: inline; font: 700 2rem/1.15 var(--serif); letter-spacing: -0.02em; margin: 0; background: linear-gradient(transparent 58%, var(--mark) 58%) no-repeat 0 0 / 0% 100%; transition: background-size .5s cubic-bezier(.3,.7,.2,1); }
@@ -211,19 +210,21 @@ h2 .dotsep { color: var(--accent); font-weight: 400; }
 .trans .lv { margin-left: auto; font: italic 400 0.92rem var(--serif); color: var(--muted); text-align: right; }
 .trans li.py .w { font-family: ui-monospace, monospace; font-size: 1rem; font-weight: 400; color: var(--star); }
 
-/* Plates */
-.plates { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.75rem 1rem; margin: 0 0 3rem; }
-@media (min-width: 72rem) { .plates { grid-template-columns: repeat(4, 1fr); } }
-.plates .plate img { aspect-ratio: 4 / 5; object-fit: cover; }
+/* Photo essay */
+.gallery { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem 1.25rem; margin: 0 0 3rem; }
+@media (min-width: 60rem) { .gallery { grid-template-columns: repeat(3, 1fr); gap: 2.5rem 1.5rem; } }
+.gallery .plate img { aspect-ratio: 4 / 5; object-fit: cover; padding: 0; border-radius: 6px; }
+.plate figcaption { font-style: italic; }
 .usage { display: grid; gap: 1.5rem 2.5rem; padding: 2rem 0 0; border-top: 1px dashed var(--rule); margin-top: 2rem; }
-@media (min-width: 60rem) { .usage { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 60rem) { .usage { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); align-items: start; } .usage.flip { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); } }
 .usage h3 { font: 700 1.5rem var(--serif); margin: 0; }
 .usage h3 .pos { font: italic 400 1rem var(--serif); color: var(--accent); margin-left: 0.4rem; }
 .usage p { margin: 0.6rem 0 0; }
-.bakes { list-style: none; padding: 0; margin: 1.5rem 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.6rem; }
+.bakes { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem 1.25rem; }
+@media (min-width: 52rem) { .bakes { grid-template-columns: repeat(3, 1fr); } }
 .bakes img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; display: block; border-radius: 6px; border: 1px solid var(--rule); transition: transform .25s, border-color .25s; }
 .bakes li:hover img { transform: scale(1.04); border-color: var(--accent); }
-.bakes span { display: block; font: italic 400 0.84rem/1.25 var(--serif); color: var(--muted); margin-top: 0.3rem; }
+.bakes span { display: block; font: italic 400 0.95rem/1.3 var(--serif); color: var(--muted); margin-top: 0.5rem; }
 
 /* Contact */
 .cta { display: inline-block; font: 600 1rem var(--sans); color: var(--bg); background: var(--accent); text-decoration: none; padding: 0.7rem 1.2rem; border-radius: 999px; margin: 0.6rem 0.6rem 0 0; transition: transform .2s, box-shadow .2s; }
@@ -278,7 +279,7 @@ footer { padding: 1.75rem 0 2.5rem; font: 400 0.85rem var(--sans); color: var(--
         </div>
         <figure class="plate hero-plate" data-cursor="look">
           <img src="img/headshot.jpg" alt="Fiona Hoang smiling, in a denim jacket" width="733" height="1100">
-          <figcaption><b>Plate I.</b>Fiona Hoang, photographed in a rare formal moment.</figcaption>
+          <figcaption>Photographed in a rare formal moment.</figcaption>
         </figure>
       </div>
     </div>
@@ -334,34 +335,30 @@ footer { padding: 1.75rem 0 2.5rem; font: 400 0.85rem var(--sans); color: var(--
         </div>
       </section>
 
-      <section id="life" aria-labelledby="life-h">
+      <section id="life" class="wide" aria-labelledby="life-h">
         <div class="head"><h2 id="life-h">off the clock</h2><span class="pos">idiom</span><p class="gloss">Not working. Observed below in several habitats.</p></div>
         <div class="body">
-          <div class="plates"><figure class="plate" data-cursor="look"><img src="img/me-grad.jpg" alt="Fiona in her graduation gown holding her diploma in front of University College, Toronto, in autumn" width="750" height="1000" loading="lazy"><figcaption><b>Plate II.</b>Graduation, University College, Toronto.</figcaption></figure>
-<figure class="plate" data-cursor="look"><img src="img/me-cat.jpg" alt="Fiona laughing with an orange and white cat perched on her shoulders" width="783" height="1000" loading="lazy"><figcaption><b>Plate III.</b>With cat. Cat's consent unclear.</figcaption></figure>
-<figure class="plate" data-cursor="look"><img src="img/me-autumn.jpg" alt="Fiona in a plaid scarf under red maple leaves" width="750" height="1000" loading="lazy"><figcaption><b>Plate IV.</b>Autumn plumage.</figcaption></figure>
-<figure class="plate" data-cursor="look"><img src="img/me-dogs.jpg" alt="Fiona at a dog café with two small dogs on her lap and an Akita beside her" width="778" height="1000" loading="lazy"><figcaption><b>Plate V.</b>Outnumbered at a dog café.</figcaption></figure>
-<figure class="plate" data-cursor="look"><img src="img/me-pup.jpg" alt="Fiona sticking her tongue out, holding a small dog in a red hoodie" width="1000" height="750" loading="lazy"><figcaption><b>Plate VI.</b>Matching energy with a dog in a hoodie.</figcaption></figure>
-<figure class="plate" data-cursor="look"><img src="img/me-night.jpg" alt="Fiona in a knit scarf on a Toronto street at night" width="1000" height="846" loading="lazy"><figcaption><b>Plate VII.</b>Toronto, after dark.</figcaption></figure>
-<figure class="plate" data-cursor="look"><img src="img/me-rose.jpg" alt="Fiona smiling with a single red rose and a green bow" width="786" height="1000" loading="lazy"><figcaption><b>Plate VIII.</b>Holding a rose for reasons not recorded.</figcaption></figure>
-<figure class="plate" data-cursor="look"><img src="img/me-catflex.jpg" alt="Fiona flexing and frowning with a sleeping cat on her lap" width="1000" height="915" loading="lazy"><figcaption><b>Plate IX.</b>Display of strength, ignored by cat.</figcaption></figure></div>
+          <div class="gallery"><figure class="plate" data-cursor="look"><img src="img/me-grad.jpg" alt="Fiona in her graduation gown holding her diploma in front of University College, Toronto, in autumn" width="1200" height="1600" loading="lazy" style="object-position:50% 60%"><figcaption>Graduation day at University College. Four years, one large piece of paper.</figcaption></figure>
+<figure class="plate" data-cursor="look"><img src="img/me-cat.jpg" alt="Fiona laughing with an orange and white cat perched on her shoulders" width="1252" height="1600" loading="lazy" style="object-position:50% 30%"><figcaption>The cat chose my shoulders. I was not consulted.</figcaption></figure>
+<figure class="plate" data-cursor="look"><img src="img/me-autumn.jpg" alt="Fiona in a plaid scarf under red maple leaves" width="1200" height="1600" loading="lazy" style="object-position:50% 60%"><figcaption>Autumn in Ontario, dressed accordingly.</figcaption></figure>
+<figure class="plate" data-cursor="look"><img src="img/me-dogs.jpg" alt="Fiona at a dog café with two small dogs on her lap and an Akita beside her" width="1241" height="1600" loading="lazy" style="object-position:50% 30%"><figcaption>Outnumbered at a dog café, and not complaining.</figcaption></figure>
+<figure class="plate" data-cursor="look"><img src="img/me-rose.jpg" alt="Fiona smiling with a single red rose after a choir performance" width="1251" height="1600" loading="lazy" style="object-position:50% 30%"><figcaption>After a choir performance, holding the obligatory rose.</figcaption></figure>
+<figure class="plate" data-cursor="look"><img src="img/me-catflex.jpg" alt="Fiona flexing and frowning with a sleeping cat on her lap" width="1600" height="1464" loading="lazy" style="object-position:40% 40%"><figcaption>Flexing. The cat was unimpressed.</figcaption></figure></div>
           <div class="usage">
             <div><h3>set<span class="pos">verb</span></h3><p>I play in several leagues as a setter, which means my job is to make other people look good and receive none of the credit. It was excellent preparation for infrastructure work.</p></div>
-            <figure class="plate" data-cursor="look"><img src="img/volleyball-set.jpg" alt="Fiona, in a purple jersey, setting the ball at an outdoor tournament" width="1400" height="949" loading="lazy"><figcaption><b>Plate X.</b>Setting at an outdoor tournament.</figcaption></figure>
+            <figure class="plate" data-cursor="look"><img src="img/volleyball-set.jpg" alt="Fiona, in a purple jersey, setting the ball at an outdoor tournament" width="1800" height="1221" loading="lazy"><figcaption>Setting at an outdoor tournament.</figcaption></figure>
           </div>
           <div class="usage">
             <div><h3>bake<span class="pos">verb</span></h3><p>Cookies are my default, although muffins have been gaining ground fast lately. When I'm feeling ambitious, I'll take on brownies, banana bread, pies, scones, cheesecake or cream puffs. My most requested recipe is matcha cookies, made with white chocolate and either marshmallow or roasted macadamia nuts.</p>
-<p>Recently, I made my first ever birthday cake! It tasted better than it looked, which I maintain is the correct order of priorities. Recipes are small experiments with fast feedback, and luckily my friends are always happy to be the evaluation set.</p><ul class="bakes"><li data-cursor="look"><img src="img/apple-rose-tart.jpg" alt="Apple tart with slices arranged in a rose" width="600" height="600" loading="lazy"><span>Apple rose tart</span></li>
-<li data-cursor="look"><img src="img/cotton-cheesecake.jpg" alt="Japanese cotton cheesecake dusted with icing sugar and topped with a strawberry" width="600" height="600" loading="lazy"><span>Japanese cotton cheesecake</span></li>
-<li data-cursor="look"><img src="img/marshmallow-cookies.jpg" alt="Chocolate chunk cookies topped with toasted marshmallows" width="600" height="600" loading="lazy"><span>Marshmallow chocolate cookies</span></li>
-<li data-cursor="look"><img src="img/layer-cake.jpg" alt="Sliced layer cake with drip icing" width="600" height="600" loading="lazy"><span>Layer cake</span></li>
-<li data-cursor="look"><img src="img/crepe-cake.jpg" alt="Stacked crepe cake" width="600" height="600" loading="lazy"><span>Crepe cake</span></li>
-<li data-cursor="look"><img src="img/cinnamon-roll.jpg" alt="Glazed cinnamon roll on a plate" width="600" height="600" loading="lazy"><span>Cinnamon roll</span></li>
-<li data-cursor="look"><img src="img/raspberry-brownies.jpg" alt="Brownies swirled with cheesecake and raspberry" width="600" height="600" loading="lazy"><span>Raspberry cheesecake brownies</span></li>
-<li data-cursor="look"><img src="img/chocolate-muffins.jpg" alt="Chocolate muffins in paper cases" width="600" height="600" loading="lazy"><span>Chocolate muffins</span></li>
-<li data-cursor="look"><img src="img/cupcakes.jpg" alt="Cupcakes with cream cheese frosting and sprinkles" width="600" height="600" loading="lazy"><span>Cupcakes</span></li></ul></div>
-            <figure class="plate" data-cursor="look"><img src="img/birthday-cake.jpg" alt="A friend, face covered by a cookie sticker, cutting Fiona's first birthday cake" width="750" height="1000" loading="lazy"><figcaption><b>Plate XI.</b>First birthday cake. Tastes better than it looks.</figcaption></figure>
+<p>Recently, I made my first ever birthday cake! It tasted better than it looked, which I maintain is the correct order of priorities. Recipes are small experiments with fast feedback, and luckily my friends are always happy to be the evaluation set.</p></div>
+            <figure class="plate" data-cursor="look"><img src="img/birthday-cake.jpg" alt="A friend, face covered by a cookie sticker, cutting Fiona's first birthday cake" width="1200" height="1600" loading="lazy"><figcaption>My first birthday cake. Tastes better than it looks.</figcaption></figure>
           </div>
+          <ul class="bakes"><li data-cursor="look"><img src="img/apple-rose-tart.jpg" alt="Apple tart with slices arranged in a rose" width="1000" height="1000" loading="lazy"><span>Apple rose tart</span></li>
+<li data-cursor="look"><img src="img/cotton-cheesecake.jpg" alt="Japanese cotton cheesecake dusted with icing sugar and topped with a strawberry" width="1000" height="1000" loading="lazy"><span>Japanese cotton cheesecake</span></li>
+<li data-cursor="look"><img src="img/marshmallow-cookies.jpg" alt="Chocolate chunk cookies topped with toasted marshmallows" width="1000" height="1000" loading="lazy"><span>Marshmallow chocolate cookies</span></li>
+<li data-cursor="look"><img src="img/crepe-cake.jpg" alt="Stacked crepe cake" width="1000" height="1000" loading="lazy"><span>Crepe cake</span></li>
+<li data-cursor="look"><img src="img/cinnamon-roll.jpg" alt="Glazed cinnamon roll on a plate" width="1000" height="1000" loading="lazy"><span>Cinnamon roll</span></li>
+<li data-cursor="look"><img src="img/raspberry-brownies.jpg" alt="Brownies swirled with cheesecake and raspberry" width="1000" height="1000" loading="lazy"><span>Raspberry cheesecake brownies</span></li></ul>
         </div>
       </section>
 
