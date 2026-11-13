@@ -269,8 +269,7 @@ footer { padding: 1.75rem 0 2.5rem; font: 400 0.85rem var(--sans); color: var(--
       <div class="entry" id="entry">
         <div>
           <h1 class="hw-big" aria-label="Fiona Hoang"><span class="ch" data-u="F" style="--i:0">F</span><span class="ch" data-u="I" style="--i:1">i</span><span class="dotsep" style="--i:2" aria-hidden="true">·</span><span class="ch" data-u="O" style="--i:3">o</span><span class="dotsep" style="--i:4" aria-hidden="true">·</span><span class="ch" data-u="N" style="--i:5">n</span><span class="ch" data-u="A" style="--i:6">a</span><span class="sp"></span><span class="ch" data-u="H" style="--i:7">H</span><span class="ch" data-u="O" style="--i:8">o</span><span class="ch" data-u="A" style="--i:9">a</span><span class="ch" data-u="N" style="--i:10">n</span><span class="ch" data-u="G" style="--i:11">g</span></h1>
-          <p class="pron"><span>fee-OH-nuh hwahng</span><span class="pos">noun</span>
-            <button class="greet" id="greet" type="button" aria-label="Show a greeting in another language"><b id="gw">Hello</b> <span id="gl">(English)</span></button></p>
+          <p class="pron"><span>fee-OH-nuh hwahng</span><span class="pos">noun</span></p>
           <p class="vi" lang="vi">Hoàng Hạnh Phương</p>
           <ol class="senses">
             <li>A software engineer who likes building the parts of a system that everyone else gets to lean on. <span class="ex">"She's done AI infrastructure at Huawei and research tools at the University of Toronto, and she's <mark>open to backend, infrastructure, ML, or something she hasn't tried yet</mark>."</span></li>
@@ -288,7 +287,7 @@ footer { padding: 1.75rem 0 2.5rem; font: 400 0.85rem var(--sans); color: var(--
       </div>
     </div>
 
-    <div class="marquee" aria-label="Hello in five languages, plus Python"><div class="track" aria-hidden="true"><span>Hello</span><span class="star" aria-hidden="true">✦</span><span>Xin chào</span><span class="star" aria-hidden="true">✦</span><span>Bonjour</span><span class="star" aria-hidden="true">✦</span><span>Hola</span><span class="star" aria-hidden="true">✦</span><span>你好</span><span class="star" aria-hidden="true">✦</span><span>print("hello")</span><span class="star" aria-hidden="true">✦</span><span>software engineer</span><span class="star" aria-hidden="true">✦</span><span>setter</span><span class="star" aria-hidden="true">✦</span><span>baker</span><span class="star" aria-hidden="true">✦</span><span>polyglot, pending</span><span class="star" aria-hidden="true">✦</span><span>Hello</span><span class="star" aria-hidden="true">✦</span><span>Xin chào</span><span class="star" aria-hidden="true">✦</span><span>Bonjour</span><span class="star" aria-hidden="true">✦</span><span>Hola</span><span class="star" aria-hidden="true">✦</span><span>你好</span><span class="star" aria-hidden="true">✦</span><span>print("hello")</span><span class="star" aria-hidden="true">✦</span><span>software engineer</span><span class="star" aria-hidden="true">✦</span><span>setter</span><span class="star" aria-hidden="true">✦</span><span>baker</span><span class="star" aria-hidden="true">✦</span><span>polyglot, pending</span><span class="star" aria-hidden="true">✦</span></div></div>
+    <div class="marquee" aria-label="Hello in five languages, plus Python"><div class="track" aria-hidden="true"><span>Hello</span><span class="star" aria-hidden="true">✦</span><span>Xin chào</span><span class="star" aria-hidden="true">✦</span><span>Bonjour</span><span class="star" aria-hidden="true">✦</span><span>Hola</span><span class="star" aria-hidden="true">✦</span><span>你好</span><span class="star" aria-hidden="true">✦</span><span>print("hello")</span><span class="star" aria-hidden="true">✦</span><span>Hello</span><span class="star" aria-hidden="true">✦</span><span>Xin chào</span><span class="star" aria-hidden="true">✦</span><span>Bonjour</span><span class="star" aria-hidden="true">✦</span><span>Hola</span><span class="star" aria-hidden="true">✦</span><span>你好</span><span class="star" aria-hidden="true">✦</span><span>print("hello")</span><span class="star" aria-hidden="true">✦</span></div></div>
 
     <div class="wrap">
       <section id="background" aria-labelledby="bg-h">
@@ -393,13 +392,6 @@ document.documentElement.classList.add("js");
     var mio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("on"); mio.unobserve(e.target); } }); }, { threshold: 0.8 });
     marks.forEach(function (m) { mio.observe(m); });
   }
-
-  // Greeting
-  var g = [["Hello","English"],["Xin chào","Vietnamese"],["Bonjour","French"],["Hola","Spanish"],["你好","Mandarin"]], gi = 0;
-  var gw = document.getElementById("gw"), gl = document.getElementById("gl");
-  function nextG() { gi = (gi + 1) % g.length; gw.textContent = g[gi][0]; gl.textContent = "(" + g[gi][1] + ")"; }
-  document.getElementById("greet").addEventListener("click", nextG);
-  if (!reduce) setInterval(nextG, 3000);
 
   // Toronto clock
   var clock = document.getElementById("clock");
