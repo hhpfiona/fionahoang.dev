@@ -34,14 +34,11 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
   display: grid; place-items: center; font: 600 0.62rem var(--sans); letter-spacing: 0.06em; color: var(--bg);
   transition: width .2s, height .2s, margin .2s, background-color .2s, border-color .2s, opacity .2s;
 }
-.cur-ring span { opacity: 0; transition: opacity .15s; }
 body.cursor-on { cursor: none; }
 body.cursor-on a, body.cursor-on button { cursor: none; }
 body.cursor-on .cur-dot, body.cursor-on .cur-ring { opacity: 1; }
 body.cur-link .cur-ring { width: 54px; height: 54px; margin: -27px 0 0 -27px; background: var(--accent-soft); border-color: var(--accent); }
-body.cur-look .cur-ring { width: 64px; height: 64px; margin: -32px 0 0 -32px; background: var(--accent); border-color: var(--accent); }
-body.cur-look .cur-ring span { opacity: 1; }
-body.cur-look .cur-dot { opacity: 0; }
+body.cur-look .cur-ring { width: 26px; height: 26px; margin: -13px 0 0 -13px; border-color: var(--ink); }
 
 /* ---------- Layout ---------- */
 .layout { display: block; }
@@ -246,7 +243,7 @@ footer { padding: 1.75rem 0 2.5rem; font: 400 0.85rem var(--sans); color: var(--
 </head>
 
 <body>
-<div class="cur-dot" aria-hidden="true"></div><div class="cur-ring" aria-hidden="true"><span>LOOK</span></div>
+<div class="cur-dot" aria-hidden="true"></div><div class="cur-ring" aria-hidden="true"></div>
 
 <nav class="topbar" aria-label="Sections"><span class="mono">FH</span><a href="#background" data-for="background">background</a><a href="#experience" data-for="experience">experience</a><a href="#research" data-for="research">research</a><a href="#languages" data-for="languages">languages</a><a href="#life" data-for="life">off the clock</a><a href="#contact" data-for="contact">contact</a></nav>
 
