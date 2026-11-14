@@ -12,18 +12,18 @@
 
 :root {
   color-scheme: dark;
-  /* Espresso & strawberry (default) */
-  --bg: #16110F; --surface: #1F1815; --surface-2: #29201C;
-  --ink: #F5EEE8; --muted: #BBACA1; --faint: #93847A; --rule: #33281F;
-  --accent: #FF86A5; --accent-rgb: 255, 134, 165; --bg-rgb: 22, 17, 15; --star: #B5E07A;
+  /* Denim & tangerine (default) */
+  --bg: #0C1428; --surface: #111C36; --surface-2: #182544;
+  --ink: #EAF0FA; --muted: #A3B0CF; --faint: #7B89AE; --rule: #1F2D50;
+  --accent: #FFA64D; --accent-rgb: 255, 166, 77; --bg-rgb: 12, 20, 40; --star: #7FD3FF;
   --accent-soft: rgba(var(--accent-rgb), 0.15); --mark: rgba(var(--accent-rgb), 0.3);
   --serif: "Source Serif 4", Georgia, serif; --sans: "Schibsted Grotesk", system-ui, sans-serif;
   --side: 17.5rem;
 }
-:root[data-palette="denim"] {
-  --bg: #0C1428; --surface: #111C36; --surface-2: #182544;
-  --ink: #EAF0FA; --muted: #A3B0CF; --faint: #7B89AE; --rule: #1F2D50;
-  --accent: #FFA64D; --accent-rgb: 255, 166, 77; --bg-rgb: 12, 20, 40; --star: #7FD3FF;
+:root[data-palette="espresso"] {
+  --bg: #201815; --surface: #29201A; --surface-2: #332822;
+  --ink: #EDE4DC; --muted: #C4B5AA; --faint: #A39385; --rule: #3E3128;
+  --accent: #FF8FAB; --accent-rgb: 255, 143, 171; --bg-rgb: 32, 24, 21; --star: #B5E07A;
 }
 body, .side, .topbar, .marquee, .trans, .boxed, .plate img { transition: background-color .45s ease, border-color .45s ease, color .45s ease; }
 * { box-sizing: border-box; }
@@ -270,7 +270,7 @@ h2 { background-size: 100% 100%; }
 </head>
 
 <body>
-<script>try { if (localStorage.getItem("palette") === "denim") document.documentElement.setAttribute("data-palette", "denim"); } catch (e) {}</script>
+<script>try { if (localStorage.getItem("palette") === "espresso") document.documentElement.setAttribute("data-palette", "espresso"); } catch (e) {}</script>
 <div class="cur-dot" aria-hidden="true"></div><div class="cur-ring" aria-hidden="true"></div>
 
 <nav class="topbar" aria-label="Sections"><span class="mono">FH</span><a href="#background" data-for="background">background</a><a href="#experience" data-for="experience">experience</a><a href="#research" data-for="research">research</a><a href="#languages" data-for="languages">languages</a><a href="#life" data-for="life">off the clock</a><a href="#contact" data-for="contact">contact</a></nav>
@@ -286,7 +286,7 @@ h2 { background-size: 100% 100%; }
 <li data-for="life"><a href="#life"><span class="hw">off the clock</span><span class="pos">idiom</span></a></li>
 <li data-for="contact"><a href="#contact"><span class="hw">con·tact</span><span class="pos">v.</span></a></li>
     </ol></div>
-    <div class="palette" role="group" aria-label="Colour scheme"><span class="lbl">Colours</span><button type="button" data-set="espresso" aria-pressed="true" aria-label="Espresso and strawberry" title="Espresso &amp; strawberry"><span style="background:#16110F"></span><span style="background:#FF86A5"></span></button><button type="button" data-set="denim" aria-pressed="false" aria-label="Denim and tangerine" title="Denim &amp; tangerine"><span style="background:#0C1428"></span><span style="background:#FFA64D"></span></button></div>
+    <div class="palette" role="group" aria-label="Colour scheme"><span class="lbl">Colours</span><button type="button" data-set="espresso" aria-pressed="false" aria-label="Espresso and strawberry" title="Espresso &amp; strawberry"><span style="background:#201815"></span><span style="background:#FF8FAB"></span></button><button type="button" data-set="denim" aria-pressed="true" aria-label="Denim and tangerine" title="Denim &amp; tangerine"><span style="background:#0C1428"></span><span style="background:#FFA64D"></span></button></div>
     <p class="status"><span class="dot" aria-hidden="true"></span>Open to work<br>Toronto, <time id="clock">--:--</time><br><a href="mailto:hhpfiona@gmail.com">hhpfiona@gmail.com</a></p>
   </aside>
 
@@ -297,7 +297,7 @@ h2 { background-size: 100% 100%; }
           <h1 class="hw-big" aria-label="Fiona Hoang"><span class="ch" data-u="F" style="--i:0">F</span><span class="ch" data-u="I" style="--i:1">i</span><span class="dotsep" style="--i:2" aria-hidden="true">·</span><span class="ch" data-u="O" style="--i:3">o</span><span class="dotsep" style="--i:4" aria-hidden="true">·</span><span class="ch" data-u="N" style="--i:5">n</span><span class="ch" data-u="A" style="--i:6">a</span><span class="sp"></span><span class="ch" data-u="H" style="--i:7">H</span><span class="ch" data-u="O" style="--i:8">o</span><span class="ch" data-u="A" style="--i:9">a</span><span class="ch" data-u="N" style="--i:10">n</span><span class="ch" data-u="G" style="--i:11">g</span></h1>
           <p class="pron"><span>fee-OH-nuh hwahng</span><span class="pos">noun</span></p>
           <p class="vi" lang="vi">Hoàng Hạnh Phương</p>
-          <div class="palette palette-m" role="group" aria-label="Colour scheme"><span class="lbl">Colours</span><button type="button" data-set="espresso" aria-pressed="true" aria-label="Espresso and strawberry" title="Espresso &amp; strawberry"><span style="background:#16110F"></span><span style="background:#FF86A5"></span></button><button type="button" data-set="denim" aria-pressed="false" aria-label="Denim and tangerine" title="Denim &amp; tangerine"><span style="background:#0C1428"></span><span style="background:#FFA64D"></span></button></div>
+          <div class="palette palette-m" role="group" aria-label="Colour scheme"><span class="lbl">Colours</span><button type="button" data-set="espresso" aria-pressed="false" aria-label="Espresso and strawberry" title="Espresso &amp; strawberry"><span style="background:#201815"></span><span style="background:#FF8FAB"></span></button><button type="button" data-set="denim" aria-pressed="true" aria-label="Denim and tangerine" title="Denim &amp; tangerine"><span style="background:#0C1428"></span><span style="background:#FFA64D"></span></button></div>
           <ol class="senses">
             <li>A software engineer who likes building the parts of a system that everyone else gets to lean on. <span class="ex">"She's done AI infrastructure at Huawei and research tools at the University of Toronto, and she's <mark>open to backend, infrastructure, ML, or something she hasn't tried yet</mark>."</span></li>
             <li><span class="lab">(volleyball)</span> A setter: one who makes other people look good and receives none of the credit.</li>
@@ -425,12 +425,12 @@ document.documentElement.classList.add("js");
   // Palette switcher
   var btns = document.querySelectorAll(".palette button");
   function applyPalette(name) {
-    if (name === "denim") document.documentElement.setAttribute("data-palette", "denim");
+    if (name === "espresso") document.documentElement.setAttribute("data-palette", "espresso");
     else document.documentElement.removeAttribute("data-palette");
     btns.forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-set") === name)); });
     try { localStorage.setItem("palette", name); } catch (e) {}
   }
-  applyPalette(document.documentElement.getAttribute("data-palette") === "denim" ? "denim" : "espresso");
+  applyPalette(document.documentElement.getAttribute("data-palette") === "espresso" ? "espresso" : "denim");
   btns.forEach(function (b) { b.addEventListener("click", function () { applyPalette(b.getAttribute("data-set")); }); });
 
   // Toronto clock
