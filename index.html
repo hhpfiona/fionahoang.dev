@@ -133,6 +133,12 @@ mark.on { background-size: 100% 100%; }
 .greet b { color: var(--ink); font-weight: 500; }
 .vi { font: italic 400 1.2rem var(--serif); color: var(--ink); margin: 0.4rem 0 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 1rem; }
 .vi .say { font: 400 1rem var(--sans); font-style: normal; color: var(--muted); }
+.play { display: inline-flex; align-items: center; gap: 0.35rem; font: 500 0.85rem var(--sans); color: var(--accent); background: var(--accent-soft); border: 1px solid transparent; border-radius: 999px; padding: 0.2rem 0.7rem 0.2rem 0.5rem; transition: border-color .2s; }
+.play:hover { border-color: var(--accent); }
+.play svg { width: 1.1rem; height: 1.1rem; }
+.play.on .w1 { animation: wave 0.9s ease-in-out infinite; }
+.play.on .w2 { animation: wave 0.9s ease-in-out 0.2s infinite; }
+@keyframes wave { 50% { opacity: 0.25; } }
 .vi .say i { font: italic 400 0.95rem var(--serif); color: var(--faint); }
 .senses { list-style: none; counter-reset: s; margin: 2rem 0 0; padding: 0; }
 .senses li { counter-increment: s; position: relative; padding: 0.55rem 0.75rem 0.55rem 2.6rem; margin: 0 -0.75rem 0.35rem 0; font-size: 1.18rem; line-height: 1.55; border-radius: 8px; transition: background-color .2s; }
@@ -329,7 +335,7 @@ h2 { background-size: 100% 100%; }
         <div>
           <h1 class="hw-big" aria-label="Fiona Hoang"><span class="ch" data-u="F" style="--i:0">F</span><span class="ch" data-u="I" style="--i:1">i</span><span class="dotsep" style="--i:2" aria-hidden="true">·</span><span class="ch" data-u="O" style="--i:3">o</span><span class="dotsep" style="--i:4" aria-hidden="true">·</span><span class="ch" data-u="N" style="--i:5">n</span><span class="ch" data-u="A" style="--i:6">a</span><span class="sp"></span><span class="ch" data-u="H" style="--i:7">H</span><span class="ch" data-u="O" style="--i:8">o</span><span class="ch" data-u="A" style="--i:9">a</span><span class="ch" data-u="N" style="--i:10">n</span><span class="ch" data-u="G" style="--i:11">g</span></h1>
           <p class="pron"><span class="pos">noun</span></p>
-          <p class="vi"><span lang="vi">Hoàng Hạnh Phương</span><span class="say">wahng · hahn · fuhng <i>(Southern Vietnamese)</i></span></p>
+          <p class="vi"><span lang="vi">Hoàng Hạnh Phương</span><span class="say">wahng · hahn · fuhng <i>(Southern Vietnamese)</i></span><button type="button" class="play" id="play-name" aria-label="Hear Fiona say her Vietnamese name"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/><path class="w1" d="M16 9.5a3.5 3.5 0 0 1 0 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="w2" d="M18.5 7a7 7 0 0 1 0 10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span>Hear it</span></button><audio id="name-audio" preload="none"><source src="audio/name.m4a" type="audio/mp4"><source src="audio/name.mp3" type="audio/mpeg"></audio></p>
           <div class="palette palette-m" role="group" aria-label="Colour scheme"><span class="lbl">Colours</span><button type="button" data-set="espresso" aria-pressed="false" aria-label="Espresso and strawberry" title="Espresso &amp; strawberry"><span style="background:#201815"></span><span style="background:#FF8FAB"></span></button><button type="button" data-set="denim" aria-pressed="true" aria-label="Denim and tangerine" title="Denim &amp; tangerine"><span style="background:#0C1428"></span><span style="background:#FFA64D"></span></button></div>
           <ol class="senses">
             <li>A software engineer who likes building the parts of a system that everyone else gets to lean on. <span class="ex">"She's done AI infrastructure at Huawei and research tools at the University of Toronto, and she's <mark>open to backend, infrastructure, ML, or something she hasn't tried yet</mark>."</span></li>
@@ -565,6 +571,15 @@ document.documentElement.classList.add("js");
     shuffleBtn.addEventListener("click", function () { shuffle(left); draw(); });
     shuffle(left); draw();
   })();
+
+  // Name audio
+  var pb = document.getElementById("play-name"), au = document.getElementById("name-audio");
+  if (pb && au) {
+    pb.addEventListener("click", function () { au.currentTime = 0; var pr = au.play(); if (pr && pr.catch) pr.catch(function () {}); });
+    au.addEventListener("play", function () { pb.classList.add("on"); });
+    au.addEventListener("ended", function () { pb.classList.remove("on"); });
+    au.addEventListener("pause", function () { pb.classList.remove("on"); });
+  }
 
   // Toronto clock
   var clock = document.getElementById("clock");
