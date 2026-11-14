@@ -247,6 +247,22 @@ h2 .dotsep { color: var(--accent); font-weight: 400; }
 .bakes span { display: block; font: italic 400 0.95rem/1.3 var(--serif); color: var(--muted); margin-top: 0.5rem; }
 
 
+
+/* Hobby cards */
+.hobbies { display: grid; gap: 1.5rem; }
+@media (min-width: 60rem) { .hobbies { grid-template-columns: 1fr 1fr; gap: 1.75rem; } }
+.hob { background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; padding: 1.4rem 1.4rem 1.2rem; display: flex; flex-direction: column; transition: border-color .25s; }
+.hob:hover { border-color: var(--accent); }
+.hob h3 { font: 700 1.5rem var(--serif); margin: 0 0 0.5rem; }
+.hob h3 .pos { font: italic 400 1rem var(--serif); color: var(--accent); margin-left: 0.4rem; }
+.hob p { margin: 0 0 1.1rem; font-size: 1.05rem; line-height: 1.6; }
+.hob-media { margin: 0; flex: 1; display: flex; flex-direction: column; }
+.hob-media img, .hob-media video { display: block; width: 100%; height: 24rem; flex: 1 0 24rem; object-fit: cover; border-radius: 8px; border: 1px solid var(--rule); background: var(--bg); }
+.hob-media.vid video { object-fit: contain; }
+.hob-media figcaption { font: italic 400 0.9rem/1.45 var(--serif); color: var(--muted); margin-top: 0.55rem; }
+.hob .bakes { grid-template-columns: repeat(3, 1fr); gap: 0.6rem; margin: 1rem 0 0; }
+.hob .bakes span { font-size: 0.8rem; }
+
 /* Connections puzzle */
 .cx { max-width: 40rem; }
 .cx-intro { margin: 0 0 1.5rem; }
@@ -428,32 +444,30 @@ h2 { background-size: 100% 100%; }
 <figure class="plate" data-cursor="look"><img src="img/me-cat.jpg" alt="Fiona laughing with an orange and white cat perched on her shoulders" width="1252" height="1600" loading="lazy"><figcaption>The cat chose my shoulders. I was not consulted.</figcaption></figure>
 <figure class="plate" data-cursor="look"><img src="img/me-hotchoc.jpg" alt="Fiona in a beanie and scarf, sticking her tongue out, holding a hot chocolate topped with toasted marshmallow" width="1200" height="1600" loading="lazy"><figcaption>Winter in Toronto, survived one hot chocolate at a time.</figcaption></figure>
 <figure class="plate" data-cursor="look"><img src="img/me-vietnam.jpg" alt="Fiona in Vietnam in a helmet, face mask and full sun jacket beside parked scooters" width="1600" height="1200" loading="lazy"><figcaption>Dressed for the Vietnamese sun, which is to say, completely.</figcaption></figure></div>
-          <div class="usage">
-            <div><h3>set<span class="pos">verb</span></h3><p>I play in several leagues as a setter. In volleyball, the setter takes the team's second touch and places the ball for someone else to spike, which means my job is to make other people look good and receive none of the credit. It was excellent preparation for infrastructure work.</p></div>
-            <figure class="plate" data-cursor="look"><img src="img/volleyball-set.jpg" alt="Fiona, in a purple jersey, setting the ball at an outdoor tournament" width="1800" height="1221" loading="lazy"><figcaption>Setting at an outdoor tournament.</figcaption></figure>
-          </div>
-          <div class="usage">
-            <div><h3>climb<span class="pos">verb</span></h3>
-              <p>I boulder indoors and out: short, hard climbs with no rope, a crash pad underneath, and friends standing below with their arms up, as if that would help.</p>
-              <p>Most of bouldering is falling off the same move until you stop falling off it. It's a lot like debugging, only the stack trace is your knees.</p>
-              <figure class="plate" data-cursor="look"><img src="img/me-boulder.jpg" alt="Fiona in a purple shirt mid-climb on an outdoor granite boulder" width="490" height="372" loading="lazy"><figcaption>Outdoors, on actual rock.</figcaption></figure>
-            </div>
-            <figure class="plate clip"><video src="video/climb.mp4" poster="video/climb-poster.jpg" width="540" height="888" controls muted playsinline preload="none" aria-label="Video of Fiona climbing an indoor bouldering problem"></video><figcaption>Indoors, on plastic. It's a lot higher (and steeper) than it looks...</figcaption></figure>
-          </div>
-          <div class="usage">
-            <div><h3>bake<span class="pos">verb</span></h3><p>Cookies are my default, although muffins have been gaining ground fast lately. When I'm feeling ambitious, I'll take on brownies, banana bread, pies, scones, cheesecake or cream puffs. My most requested recipe is matcha cookies, made with white chocolate and either marshmallow or roasted macadamia nuts.</p>
-<p>Recently, I made my first ever birthday cake! It tasted better than it looked, which I maintain is the correct order of priorities. If you really think about it, recipes are small experiments with fast feedback, and luckily my friends are always happy to be the evaluation set.</p></div>
-            <figure class="plate" data-cursor="look"><img src="img/birthday-cake.jpg" alt="A friend, face covered by a cookie sticker, cutting Fiona's first birthday cake" width="1200" height="1600" loading="lazy"><figcaption>My first birthday cake: Lotus Biscoff sponge, hojicha white chocolate buttercream, and whipped salted maple caramel.</figcaption></figure>
-          </div>
-          <ul class="bakes"><li data-cursor="look"><img src="img/apple-rose-tart.jpg" alt="Apple tart with slices arranged in a rose" width="1000" height="1000" loading="lazy"><span>Apple rose tart</span></li>
+          <div class="hobbies">
+            <article class="hob">
+              <h3>set<span class="pos">verb</span></h3>
+              <p>I play in several leagues as a setter: the player who takes the second touch and places the ball for a teammate to spike. My job is to make other people look good and get none of the credit, which was excellent preparation for infrastructure work.</p>
+              <figure class="hob-media" data-cursor="look"><img src="img/volleyball-set.jpg" alt="Fiona, in a purple jersey, setting the ball at an outdoor tournament" width="1800" height="1221" loading="lazy" style="object-position: 45% 40%"><figcaption>Setting at an outdoor tournament.</figcaption></figure>
+            </article>
+            <article class="hob">
+              <h3>climb<span class="pos">verb</span></h3>
+              <p>I boulder indoors and out: short, hard climbs with no rope and a crash pad underneath. Most of it is falling off the same move until you stop falling off it. A lot like debugging, only the stack trace is your knees.</p>
+              <figure class="hob-media vid"><video src="video/climb.mp4" poster="video/climb-poster.jpg" width="540" height="888" controls muted playsinline preload="none" aria-label="Video of Fiona climbing an indoor bouldering problem"></video><figcaption>Indoors, on plastic. It's a lot higher (and steeper) than it looks...</figcaption></figure>
+            </article>
+            <article class="hob">
+              <h3>bake<span class="pos">verb</span></h3>
+              <p>Cookies are my default, though muffins have been gaining ground. My first birthday cake tasted better than it looked, which I maintain is the correct order of priorities. If you really think about it, recipes are small experiments with fast feedback, and luckily my friends are always happy to be the evaluation set.</p>
+              <figure class="hob-media" data-cursor="look"><img src="img/birthday-cake.jpg" alt="A friend, face covered by a cookie sticker, cutting Fiona's first birthday cake" width="1200" height="1600" loading="lazy" style="object-position: 50% 55%"><figcaption>My first birthday cake: Lotus Biscoff sponge, hojicha white chocolate buttercream, and whipped salted maple caramel.</figcaption></figure>
+              <ul class="bakes"><li data-cursor="look"><img src="img/apple-rose-tart.jpg" alt="Apple tart with slices arranged in a rose" width="1000" height="1000" loading="lazy"><span>Apple rose tart</span></li>
 <li data-cursor="look"><img src="img/cotton-cheesecake.jpg" alt="Japanese cotton cheesecake dusted with icing sugar and topped with a strawberry" width="1000" height="1000" loading="lazy"><span>Japanese cotton cheesecake</span></li>
 <li data-cursor="look"><img src="img/chocolate-muffins.jpg" alt="Chocolate muffins in paper cases" width="1000" height="1000" loading="lazy"><span>Chocolate muffins</span></li></ul>
-          <div class="usage flip">
-            <figure class="plate" data-cursor="look"><img src="img/me-rose.jpg" alt="Fiona smiling with a single red rose after a New Resonance performance" width="1251" height="1600" loading="lazy" class="tall"><figcaption>After a performance, holding the obligatory rose.</figcaption></figure>
-            <div><h3>sing<span class="pos">verb</span></h3>
-              <p>For a few years I sang alto with <a href="https://www.instagram.com/newresonance/">New Resonance</a>, New College's a cappella group at the University of Toronto.</p>
-              <p>My favourite small-group performances were <a href="https://www.youtube.com/watch?v=crWDrNZGaWk">"Hikaru Nara"</a> by Goose house, <a href="https://www.youtube.com/watch?v=_w5t3YP2rwE">"Twelve Dancing Princesses"</a> as one of the upper voices, and "Burn" from <i>Hamilton</i>, which was never recorded and is therefore, officially, flawless.</p>
-            </div>
+            </article>
+            <article class="hob">
+              <h3>sing<span class="pos">verb</span></h3>
+              <p>For a few years I sang alto with <a href="https://www.instagram.com/newresonance/">New Resonance</a>, New College's a cappella group. Favourite small-group pieces: <a href="https://www.youtube.com/watch?v=crWDrNZGaWk">"Hikaru Nara"</a> by Goose house, <a href="https://www.youtube.com/watch?v=_w5t3YP2rwE">"Twelve Dancing Princesses"</a> in the upper voices, and "Burn" from <i>Hamilton</i>, which was never recorded and is therefore, officially, flawless.</p>
+              <figure class="hob-media" data-cursor="look"><img src="img/me-rose.jpg" alt="Fiona smiling with a single red rose after a New Resonance performance" width="1251" height="1600" loading="lazy" style="object-position: 50% 30%"><figcaption>After a performance, holding the obligatory rose.</figcaption></figure>
+            </article>
           </div>
         </div>
       </section>
