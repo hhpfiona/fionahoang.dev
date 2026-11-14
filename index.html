@@ -276,6 +276,13 @@ h2 .dotsep { color: var(--accent); font-weight: 400; }
 .cx-btn:hover:not(:disabled) { border-color: var(--accent); }
 .cx-btn.go { background: var(--accent); color: var(--bg); border-color: var(--accent); }
 .cx-btn:disabled { opacity: 0.4; }
+.cx-board { position: relative; }
+.cx-toast {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -40%); z-index: 3; pointer-events: none;
+  font: 700 0.95rem var(--sans); color: var(--bg); background: var(--ink); padding: 0.5rem 1rem; border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35); opacity: 0; transition: opacity .2s, transform .2s;
+}
+.cx-toast.show { opacity: 1; transform: translate(-50%, -50%); }
 .cx-msg { min-height: 1.6em; font: 500 0.95rem var(--sans); color: var(--accent); margin: 0.75rem 0 0; }
 
 /* Contact */
@@ -463,7 +470,7 @@ h2 { background-size: 100% 100%; }
         <div class="body cx">
           <p class="cx-intro">I play puzzles when I have a spare minute: Wordle, Connections, sudoku, the Minute Cryptic. So here's a Connections puzzle made out of me. Find the four groups of four. Careful, a few words are trying to mislead you.</p>
           <div class="cx-solved" id="cx-solved"></div>
-          <div class="cx-grid" id="cx-grid" role="group" aria-label="Puzzle words"></div>
+          <div class="cx-board"><div class="cx-grid" id="cx-grid" role="group" aria-label="Puzzle words"></div><div class="cx-toast" id="cx-toast" aria-hidden="true"></div></div>
           <div class="cx-bar">
             <span class="mist" id="cx-mist" aria-label="Mistakes remaining"></span>
             <button type="button" class="cx-btn" id="cx-shuffle">Shuffle</button>
@@ -529,6 +536,11 @@ document.documentElement.classList.add("js");
     var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     groups.forEach(function (g, gi) { g.words.forEach(function (w) { left.push({ w: w, g: gi }); }); });
     function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+    var toastEl = document.getElementById("cx-toast"), toastTimer = null;
+    function toast(text) {
+      toastEl.textContent = text; toastEl.classList.add("show");
+      clearTimeout(toastTimer); toastTimer = setTimeout(function () { toastEl.classList.remove("show"); }, 1600);
+    }
     function drawMist() {
       mistEl.innerHTML = "Mistakes left: ";
       for (var i = 0; i < mistakes; i++) { var d = document.createElement("i"); d.setAttribute("aria-hidden", "true"); mistEl.appendChild(d); }
@@ -566,7 +578,7 @@ document.documentElement.classList.add("js");
     submit.addEventListener("click", function () {
       if (busy) return;
       var key = picked.slice().sort().join("|");
-      if (guesses.indexOf(key) > -1) { msg.textContent = "Already guessed!"; return; }
+      if (guesses.indexOf(key) > -1) { msg.textContent = "Already guessed!"; toast("Already guessed!"); return; }
       guesses.push(key);
       var counts = {};
       picked.forEach(function (w) { var g = left.filter(function (t) { return t.w === w; })[0].g; counts[g] = (counts[g] || 0) + 1; });
@@ -586,7 +598,8 @@ document.documentElement.classList.add("js");
         return;
       } else {
         mistakes--;
-        msg.textContent = best === 3 ? "One away..." : "Not quite.";
+        msg.textContent = best === 3 ? "One away!" : "Not quite.";
+        if (best === 3) toast("One away!");
         grid.querySelectorAll("[aria-pressed=true]").forEach(function (b) { b.classList.add("shake"); });
         if (mistakes === 0) {
           done = true; picked = [];
