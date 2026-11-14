@@ -251,11 +251,14 @@ h2 .dotsep { color: var(--accent); font-weight: 400; }
 .cx { max-width: 40rem; }
 .cx-intro { margin: 0 0 1.5rem; }
 .cx-solved { display: grid; gap: 0.5rem; margin-bottom: 0.5rem; }
-.cx-group { border-radius: 10px; padding: 0.75rem 1rem; text-align: center; color: #1B1A22; animation: cxin .35s ease; }
+.cx-solved:empty, .cx-solved:has(+ .cx-grid:empty) { margin-bottom: 0; }
+.cx-group { min-height: 4.2rem; display: flex; flex-direction: column; justify-content: center; border-radius: 10px; padding: 0.4rem 1rem; text-align: center; color: #1B1A22; animation: cxin .3s ease-out; }
+.cx-tile.hop { animation: hop .32s ease-out both; }
+@keyframes hop { 40% { transform: translateY(-7px); } 100% { transform: none; } }
 .cx-group b { display: block; font: 700 0.95rem var(--sans); letter-spacing: 0.03em; }
 .cx-group span { font: 500 0.95rem var(--sans); }
 .cx-g0 { background: #FFD36E; } .cx-g1 { background: #A8D672; } .cx-g2 { background: #9CC8FF; } .cx-g3 { background: #D3A6F5; }
-@keyframes cxin { from { transform: scale(.96); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes cxin { from { transform: scale(.98); opacity: 0.2; } to { transform: none; opacity: 1; } }
 .cx-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.5rem; }
 .cx-tile {
   font: 700 clamp(0.72rem, 2.6vw, 0.95rem) var(--sans); letter-spacing: 0.02em; text-transform: uppercase;
@@ -522,7 +525,8 @@ document.documentElement.classList.add("js");
     var msg = document.getElementById("cx-msg"), mistEl = document.getElementById("cx-mist");
     var submit = document.getElementById("cx-submit"), clear = document.getElementById("cx-clear"), shuffleBtn = document.getElementById("cx-shuffle");
     if (!grid) return;
-    var left = [], picked = [], mistakes = 4, done = false, guesses = [];
+    var left = [], picked = [], mistakes = 4, done = false, guesses = [], busy = false;
+    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     groups.forEach(function (g, gi) { g.words.forEach(function (w) { left.push({ w: w, g: gi }); }); });
     function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
     function drawMist() {
@@ -539,6 +543,7 @@ document.documentElement.classList.add("js");
         b.disabled = done;
         b.addEventListener("click", function () {
           var i = picked.indexOf(t.w);
+          if (busy) return;
           if (i > -1) picked.splice(i, 1); else if (picked.length < 4) picked.push(t.w);
           msg.textContent = ""; draw();
         });
@@ -559,6 +564,7 @@ document.documentElement.classList.add("js");
       left = left.filter(function (t) { return t.g !== gi; });
     }
     submit.addEventListener("click", function () {
+      if (busy) return;
       var key = picked.slice().sort().join("|");
       if (guesses.indexOf(key) > -1) { msg.textContent = "Already guessed!"; return; }
       guesses.push(key);
@@ -566,9 +572,18 @@ document.documentElement.classList.add("js");
       picked.forEach(function (w) { var g = left.filter(function (t) { return t.w === w; })[0].g; counts[g] = (counts[g] || 0) + 1; });
       var best = Math.max.apply(null, Object.keys(counts).map(function (k) { return counts[k]; }));
       if (best === 4) {
-        reveal(+Object.keys(counts)[0]); picked = [];
-        msg.textContent = left.length ? "Nice!" : "Solved! You now know me slightly better than most recruiters.";
-        if (!left.length) done = true;
+        // Hop the four tiles, then swap them for the coloured row in one frame,
+        // so the grid never changes height mid-animation.
+        var gi = +Object.keys(counts)[0];
+        busy = true; submit.disabled = clear.disabled = shuffleBtn.disabled = true;
+        grid.querySelectorAll("[aria-pressed=true]").forEach(function (b, i) { b.style.animationDelay = (i * 70) + "ms"; b.classList.add("hop"); });
+        setTimeout(function () {
+          reveal(gi); picked = []; busy = false;
+          if (!left.length) done = true;
+          msg.textContent = left.length ? "Nice!" : "Solved! You now know me slightly better than most recruiters.";
+          draw();
+        }, reduceMotion ? 0 : 560);
+        return;
       } else {
         mistakes--;
         msg.textContent = best === 3 ? "One away..." : "Not quite.";
