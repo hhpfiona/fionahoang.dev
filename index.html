@@ -131,7 +131,9 @@ mark.on { background-size: 100% 100%; }
 .greet { font: 400 0.88rem var(--sans); color: var(--muted); border: 1px solid var(--rule); border-radius: 999px; padding: 0.2rem 0.75rem; background: var(--surface); transition: border-color .2s, color .2s; }
 .greet:hover { border-color: var(--accent); color: var(--accent); }
 .greet b { color: var(--ink); font-weight: 500; }
-.vi { font: italic 400 1.05rem var(--serif); color: var(--muted); margin: 0.5rem 0 0; }
+.vi { font: italic 400 1.2rem var(--serif); color: var(--ink); margin: 0.4rem 0 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.35rem 1rem; }
+.vi .say { font: 400 1rem var(--sans); font-style: normal; color: var(--muted); }
+.vi .say i { font: italic 400 0.95rem var(--serif); color: var(--faint); }
 .senses { list-style: none; counter-reset: s; margin: 2rem 0 0; padding: 0; }
 .senses li { counter-increment: s; position: relative; padding: 0.55rem 0.75rem 0.55rem 2.6rem; margin: 0 -0.75rem 0.35rem 0; font-size: 1.18rem; line-height: 1.55; border-radius: 8px; transition: background-color .2s; }
 .senses li::before { content: counter(s); position: absolute; left: 0.75rem; top: 0.6rem; font: 700 1.15rem var(--serif); color: var(--accent); transition: transform .2s; }
@@ -295,8 +297,8 @@ h2 { background-size: 100% 100%; }
       <div class="entry" id="entry">
         <div>
           <h1 class="hw-big" aria-label="Fiona Hoang"><span class="ch" data-u="F" style="--i:0">F</span><span class="ch" data-u="I" style="--i:1">i</span><span class="dotsep" style="--i:2" aria-hidden="true">·</span><span class="ch" data-u="O" style="--i:3">o</span><span class="dotsep" style="--i:4" aria-hidden="true">·</span><span class="ch" data-u="N" style="--i:5">n</span><span class="ch" data-u="A" style="--i:6">a</span><span class="sp"></span><span class="ch" data-u="H" style="--i:7">H</span><span class="ch" data-u="O" style="--i:8">o</span><span class="ch" data-u="A" style="--i:9">a</span><span class="ch" data-u="N" style="--i:10">n</span><span class="ch" data-u="G" style="--i:11">g</span></h1>
-          <p class="pron"><span>fee-OH-nuh hwahng</span><span class="pos">noun</span></p>
-          <p class="vi" lang="vi">Hoàng Hạnh Phương</p>
+          <p class="pron"><span class="pos">noun</span></p>
+          <p class="vi"><span lang="vi">Hoàng Hạnh Phương</span><span class="say">wahng · hahn · fuhng <i>(Southern Vietnamese)</i></span></p>
           <div class="palette palette-m" role="group" aria-label="Colour scheme"><span class="lbl">Colours</span><button type="button" data-set="espresso" aria-pressed="false" aria-label="Espresso and strawberry" title="Espresso &amp; strawberry"><span style="background:#201815"></span><span style="background:#FF8FAB"></span></button><button type="button" data-set="denim" aria-pressed="true" aria-label="Denim and tangerine" title="Denim &amp; tangerine"><span style="background:#0C1428"></span><span style="background:#FFA64D"></span></button></div>
           <ol class="senses">
             <li>A software engineer who likes building the parts of a system that everyone else gets to lean on. <span class="ex">"She's done AI infrastructure at Huawei and research tools at the University of Toronto, and she's <mark>open to backend, infrastructure, ML, or something she hasn't tried yet</mark>."</span></li>
