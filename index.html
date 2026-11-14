@@ -12,13 +12,20 @@
 
 :root {
   color-scheme: dark;
-  --bg: #111219; --surface: #171923; --surface-2: #1E2130;
-  --ink: #ECEBF4; --muted: #A09EB2; --faint: #6E6D80; --rule: #282A39;
-  --accent: #AAB4FF; --accent-soft: rgba(170, 180, 255, 0.14);
-  --mark: rgba(170, 180, 255, 0.28); --star: #FFD06B;
+  /* Espresso & strawberry (default) */
+  --bg: #16110F; --surface: #1F1815; --surface-2: #29201C;
+  --ink: #F5EEE8; --muted: #BBACA1; --faint: #93847A; --rule: #33281F;
+  --accent: #FF86A5; --accent-rgb: 255, 134, 165; --bg-rgb: 22, 17, 15; --star: #B5E07A;
+  --accent-soft: rgba(var(--accent-rgb), 0.15); --mark: rgba(var(--accent-rgb), 0.3);
   --serif: "Source Serif 4", Georgia, serif; --sans: "Schibsted Grotesk", system-ui, sans-serif;
   --side: 17.5rem;
 }
+:root[data-palette="denim"] {
+  --bg: #0C1428; --surface: #111C36; --surface-2: #182544;
+  --ink: #EAF0FA; --muted: #A3B0CF; --faint: #7B89AE; --rule: #1F2D50;
+  --accent: #FFA64D; --accent-rgb: 255, 166, 77; --bg-rgb: 12, 20, 40; --star: #7FD3FF;
+}
+body, .side, .topbar, .marquee, .trans, .boxed, .plate img { transition: background-color .45s ease, border-color .45s ease, color .45s ease; }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1.125rem/1.7 var(--serif); overflow-x: hidden; }
@@ -30,7 +37,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .cur-dot, .cur-ring { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 100; opacity: 0; border-radius: 50%; transform: translate3d(-100px, -100px, 0); }
 .cur-dot { width: 6px; height: 6px; margin: -3px 0 0 -3px; background: var(--accent); }
 .cur-ring {
-  width: 34px; height: 34px; margin: -17px 0 0 -17px; border: 1px solid rgba(170, 180, 255, 0.55);
+  width: 34px; height: 34px; margin: -17px 0 0 -17px; border: 1px solid rgba(var(--accent-rgb), 0.55);
   display: grid; place-items: center; font: 600 0.62rem var(--sans); letter-spacing: 0.06em; color: var(--bg);
   transition: width .2s, height .2s, margin .2s, background-color .2s, border-color .2s, opacity .2s;
 }
@@ -45,7 +52,7 @@ body.cur-look .cur-ring { width: 26px; height: 26px; margin: -13px 0 0 -13px; bo
 @media (min-width: 64rem) { .layout { display: grid; grid-template-columns: var(--side) 1fr; } }
 
 /* Mobile top bar */
-.topbar { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 1rem; padding: 0.8rem 16px; background: rgba(17, 18, 25, 0.88); backdrop-filter: blur(10px); border-bottom: 1px solid var(--rule); font: 500 0.85rem var(--sans); overflow-x: auto; white-space: nowrap; }
+.topbar { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; gap: 1rem; padding: 0.8rem 16px; background: rgba(var(--bg-rgb), 0.88); backdrop-filter: blur(10px); border-bottom: 1px solid var(--rule); font: 500 0.85rem var(--sans); overflow-x: auto; white-space: nowrap; }
 .topbar a { color: var(--muted); text-decoration: none; }
 .topbar a.active { color: var(--accent); }
 .topbar .mono { color: var(--ink); font-weight: 600; margin-right: 0.25rem; }
@@ -229,9 +236,29 @@ h2 .dotsep { color: var(--accent); font-weight: 400; }
 
 /* Contact */
 .cta { display: inline-block; font: 600 1rem var(--sans); color: var(--bg); background: var(--accent); text-decoration: none; padding: 0.7rem 1.2rem; border-radius: 999px; margin: 0.6rem 0.6rem 0 0; transition: transform .2s, box-shadow .2s; }
-.cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(170, 180, 255, 0.25); }
+.cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.25); }
 .cta.alt { background: transparent; color: var(--accent); box-shadow: inset 0 0 0 1.5px var(--accent); }
 footer { padding: 1.75rem 0 2.5rem; font: 400 0.85rem var(--sans); color: var(--faint); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
+
+/* Bold accent treatment */
+.marquee { background: var(--accent); border: 0; }
+.track span { color: var(--bg) !important; font-weight: 600; }
+.track span.star { color: var(--bg) !important; }
+.senses li::before, .defs > li::before { color: var(--star); }
+.hero-plate img { border-color: var(--accent); box-shadow: 10px 10px 0 var(--accent-soft); }
+.root .mono { background: var(--accent); }
+h2 { background-size: 100% 100%; }
+
+/* Palette switcher */
+.palette { display: flex; align-items: center; gap: 0.5rem; margin: 0 0 1.25rem; font: 400 0.78rem var(--sans); color: var(--muted); }
+.palette button { display: flex; width: 1.6rem; height: 1.6rem; padding: 0; border-radius: 50%; border: 2px solid var(--rule); overflow: hidden; background: none; transition: transform .2s, border-color .2s; }
+.palette button span { flex: 1; }
+.palette button:hover { transform: scale(1.1); }
+.palette button[aria-pressed="true"] { border-color: var(--ink); }
+.side .palette { margin-top: auto; }
+.side .status { margin-top: 0 !important; }
+.palette-m { margin: 1rem 0 0; }
+@media (min-width: 64rem) { .palette-m { display: none; } }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -243,6 +270,7 @@ footer { padding: 1.75rem 0 2.5rem; font: 400 0.85rem var(--sans); color: var(--
 </head>
 
 <body>
+<script>try { if (localStorage.getItem("palette") === "denim") document.documentElement.setAttribute("data-palette", "denim"); } catch (e) {}</script>
 <div class="cur-dot" aria-hidden="true"></div><div class="cur-ring" aria-hidden="true"></div>
 
 <nav class="topbar" aria-label="Sections"><span class="mono">FH</span><a href="#background" data-for="background">background</a><a href="#experience" data-for="experience">experience</a><a href="#research" data-for="research">research</a><a href="#languages" data-for="languages">languages</a><a href="#life" data-for="life">off the clock</a><a href="#contact" data-for="contact">contact</a></nav>
@@ -258,6 +286,7 @@ footer { padding: 1.75rem 0 2.5rem; font: 400 0.85rem var(--sans); color: var(--
 <li data-for="life"><a href="#life"><span class="hw">off the clock</span><span class="pos">idiom</span></a></li>
 <li data-for="contact"><a href="#contact"><span class="hw">con·tact</span><span class="pos">v.</span></a></li>
     </ol></div>
+    <div class="palette" role="group" aria-label="Colour scheme"><span class="lbl">Colours</span><button type="button" data-set="espresso" aria-pressed="true" aria-label="Espresso and strawberry" title="Espresso &amp; strawberry"><span style="background:#16110F"></span><span style="background:#FF86A5"></span></button><button type="button" data-set="denim" aria-pressed="false" aria-label="Denim and tangerine" title="Denim &amp; tangerine"><span style="background:#0C1428"></span><span style="background:#FFA64D"></span></button></div>
     <p class="status"><span class="dot" aria-hidden="true"></span>Open to work<br>Toronto, <time id="clock">--:--</time><br><a href="mailto:hhpfiona@gmail.com">hhpfiona@gmail.com</a></p>
   </aside>
 
@@ -268,6 +297,7 @@ footer { padding: 1.75rem 0 2.5rem; font: 400 0.85rem var(--sans); color: var(--
           <h1 class="hw-big" aria-label="Fiona Hoang"><span class="ch" data-u="F" style="--i:0">F</span><span class="ch" data-u="I" style="--i:1">i</span><span class="dotsep" style="--i:2" aria-hidden="true">·</span><span class="ch" data-u="O" style="--i:3">o</span><span class="dotsep" style="--i:4" aria-hidden="true">·</span><span class="ch" data-u="N" style="--i:5">n</span><span class="ch" data-u="A" style="--i:6">a</span><span class="sp"></span><span class="ch" data-u="H" style="--i:7">H</span><span class="ch" data-u="O" style="--i:8">o</span><span class="ch" data-u="A" style="--i:9">a</span><span class="ch" data-u="N" style="--i:10">n</span><span class="ch" data-u="G" style="--i:11">g</span></h1>
           <p class="pron"><span>fee-OH-nuh hwahng</span><span class="pos">noun</span></p>
           <p class="vi" lang="vi">Hoàng Hạnh Phương</p>
+          <div class="palette palette-m" role="group" aria-label="Colour scheme"><span class="lbl">Colours</span><button type="button" data-set="espresso" aria-pressed="true" aria-label="Espresso and strawberry" title="Espresso &amp; strawberry"><span style="background:#16110F"></span><span style="background:#FF86A5"></span></button><button type="button" data-set="denim" aria-pressed="false" aria-label="Denim and tangerine" title="Denim &amp; tangerine"><span style="background:#0C1428"></span><span style="background:#FFA64D"></span></button></div>
           <ol class="senses">
             <li>A software engineer who likes building the parts of a system that everyone else gets to lean on. <span class="ex">"She's done AI infrastructure at Huawei and research tools at the University of Toronto, and she's <mark>open to backend, infrastructure, ML, or something she hasn't tried yet</mark>."</span></li>
             <li><span class="lab">(volleyball)</span> A setter: one who makes other people look good and receives none of the credit.</li>
@@ -391,6 +421,17 @@ document.documentElement.classList.add("js");
     var mio = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("on"); mio.unobserve(e.target); } }); }, { threshold: 0.8 });
     marks.forEach(function (m) { mio.observe(m); });
   }
+
+  // Palette switcher
+  var btns = document.querySelectorAll(".palette button");
+  function applyPalette(name) {
+    if (name === "denim") document.documentElement.setAttribute("data-palette", "denim");
+    else document.documentElement.removeAttribute("data-palette");
+    btns.forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-set") === name)); });
+    try { localStorage.setItem("palette", name); } catch (e) {}
+  }
+  applyPalette(document.documentElement.getAttribute("data-palette") === "denim" ? "denim" : "espresso");
+  btns.forEach(function (b) { b.addEventListener("click", function () { applyPalette(b.getAttribute("data-set")); }); });
 
   // Toronto clock
   var clock = document.getElementById("clock");
