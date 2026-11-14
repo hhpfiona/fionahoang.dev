@@ -237,6 +237,35 @@ h2 .dotsep { color: var(--accent); font-weight: 400; }
 .bakes li:hover img { transform: scale(1.04); border-color: var(--accent); }
 .bakes span { display: block; font: italic 400 0.95rem/1.3 var(--serif); color: var(--muted); margin-top: 0.5rem; }
 
+
+/* Connections puzzle */
+.cx { max-width: 40rem; }
+.cx-intro { margin: 0 0 1.5rem; }
+.cx-solved { display: grid; gap: 0.5rem; margin-bottom: 0.5rem; }
+.cx-group { border-radius: 10px; padding: 0.75rem 1rem; text-align: center; color: #1B1A22; animation: cxin .35s ease; }
+.cx-group b { display: block; font: 700 0.95rem var(--sans); letter-spacing: 0.03em; }
+.cx-group span { font: 500 0.95rem var(--sans); }
+.cx-g0 { background: #FFD36E; } .cx-g1 { background: #A8D672; } .cx-g2 { background: #9CC8FF; } .cx-g3 { background: #D3A6F5; }
+@keyframes cxin { from { transform: scale(.96); opacity: 0; } to { transform: none; opacity: 1; } }
+.cx-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.5rem; }
+.cx-tile {
+  font: 700 clamp(0.72rem, 2.6vw, 0.95rem) var(--sans); letter-spacing: 0.02em; text-transform: uppercase;
+  color: var(--ink); background: var(--surface-2); border: 1px solid var(--rule); border-radius: 10px;
+  min-height: 4.2rem; padding: 0.4rem; transition: background-color .15s, color .15s, transform .15s; overflow-wrap: anywhere;
+}
+.cx-tile:hover { transform: translateY(-2px); border-color: var(--accent); }
+.cx-tile[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+.cx-tile.shake { animation: shake .35s; }
+@keyframes shake { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+.cx-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin-top: 1rem; }
+.cx-bar .mist { font: 400 0.9rem var(--sans); color: var(--muted); margin-right: auto; display: flex; align-items: center; gap: 0.35rem; }
+.cx-bar .mist i { width: 0.7rem; height: 0.7rem; border-radius: 50%; background: var(--accent); display: inline-block; }
+.cx-btn { font: 600 0.9rem var(--sans); color: var(--ink); background: transparent; border: 1.5px solid var(--rule); border-radius: 999px; padding: 0.45rem 1rem; transition: border-color .2s, background-color .2s; }
+.cx-btn:hover:not(:disabled) { border-color: var(--accent); }
+.cx-btn.go { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.cx-btn:disabled { opacity: 0.4; }
+.cx-msg { min-height: 1.6em; font: 500 0.95rem var(--sans); color: var(--accent); margin: 0.75rem 0 0; }
+
 /* Contact */
 .cta { display: inline-block; font: 600 1rem var(--sans); color: var(--bg); background: var(--accent); text-decoration: none; padding: 0.7rem 1.2rem; border-radius: 999px; margin: 0.6rem 0.6rem 0 0; transition: transform .2s, box-shadow .2s; }
 .cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(var(--accent-rgb), 0.25); }
@@ -276,7 +305,7 @@ h2 { background-size: 100% 100%; }
 <script>try { if (localStorage.getItem("palette") === "espresso") document.documentElement.setAttribute("data-palette", "espresso"); } catch (e) {}</script>
 <div class="cur-dot" aria-hidden="true"></div><div class="cur-ring" aria-hidden="true"></div>
 
-<nav class="topbar" aria-label="Sections"><span class="mono">FH</span><a href="#background" data-for="background">background</a><a href="#experience" data-for="experience">experience</a><a href="#research" data-for="research">research</a><a href="#languages" data-for="languages">languages</a><a href="#life" data-for="life">off the clock</a><a href="#contact" data-for="contact">contact</a></nav>
+<nav class="topbar" aria-label="Sections"><span class="mono">FH</span><a href="#background" data-for="background">background</a><a href="#experience" data-for="experience">experience</a><a href="#research" data-for="research">research</a><a href="#languages" data-for="languages">languages</a><a href="#life" data-for="life">off the clock</a><a href="#puzzle" data-for="puzzle">connections</a><a href="#contact" data-for="contact">contact</a></nav>
 
 <div class="layout">
   <aside class="side" aria-label="Page outline">
@@ -287,6 +316,7 @@ h2 { background-size: 100% 100%; }
 <li data-for="research"><a href="#research"><span class="hw">re·search</span><span class="pos">n.</span></a></li>
 <li data-for="languages"><a href="#languages"><span class="hw">lan·guag·es</span><span class="pos">pl. n.</span></a></li>
 <li data-for="life"><a href="#life"><span class="hw">off the clock</span><span class="pos">idiom</span></a></li>
+<li data-for="puzzle"><a href="#puzzle"><span class="hw">con·nec·tions</span><span class="pos">pl. n.</span></a></li>
 <li data-for="contact"><a href="#contact"><span class="hw">con·tact</span><span class="pos">v.</span></a></li>
     </ol></div>
     <div class="palette" role="group" aria-label="Colour scheme"><span class="lbl">Colours</span><button type="button" data-set="espresso" aria-pressed="false" aria-label="Espresso and strawberry" title="Espresso &amp; strawberry"><span style="background:#201815"></span><span style="background:#FF8FAB"></span></button><button type="button" data-set="denim" aria-pressed="true" aria-label="Denim and tangerine" title="Denim &amp; tangerine"><span style="background:#0C1428"></span><span style="background:#FFA64D"></span></button></div>
@@ -404,6 +434,23 @@ h2 { background-size: 100% 100%; }
         </div>
       </section>
 
+
+      <section id="puzzle" aria-labelledby="puzzle-h">
+        <div class="head"><h2 id="puzzle-h">con<span class="dotsep">·</span>nec<span class="dotsep">·</span>tions</h2><span class="pos">plural noun</span><p class="gloss">Things that belong together. Sorting them out is half the fun.</p></div>
+        <div class="body cx">
+          <p class="cx-intro">I play puzzles when I have a spare minute: Wordle, Connections, sudoku, the Minute Cryptic. So here's a Connections puzzle made out of me. Find the four groups of four. Careful, a few words are trying to mislead you.</p>
+          <div class="cx-solved" id="cx-solved"></div>
+          <div class="cx-grid" id="cx-grid" role="group" aria-label="Puzzle words"></div>
+          <div class="cx-bar">
+            <span class="mist" id="cx-mist" aria-label="Mistakes remaining"></span>
+            <button type="button" class="cx-btn" id="cx-shuffle">Shuffle</button>
+            <button type="button" class="cx-btn" id="cx-clear" disabled>Deselect all</button>
+            <button type="button" class="cx-btn go" id="cx-submit" disabled>Submit</button>
+          </div>
+          <p class="cx-msg" id="cx-msg" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+
       <section id="contact" aria-labelledby="contact-h">
         <div class="head"><h2 id="contact-h">con<span class="dotsep">·</span>tact</h2><span class="pos">verb</span><p class="gloss">To get in touch. Usage: highly encouraged.</p></div>
         <div class="body"><p>I'm looking for entry-level software roles, whether that's backend, infrastructure, ML or research engineering, in Toronto, remote in Canada, or further afield. If anything here caught your eye, I'd love to hear from you.</p>
@@ -443,13 +490,89 @@ document.documentElement.classList.add("js");
   applyPalette(document.documentElement.getAttribute("data-palette") === "espresso" ? "espresso" : "denim");
   btns.forEach(function (b) { b.addEventListener("click", function () { applyPalette(b.getAttribute("data-set")); }); });
 
+  // Connections puzzle
+  (function () {
+    var groups = [
+      { name: "Things I've baked", words: ["SCONE", "CREPE", "MUFFIN", "BROWNIE"] },
+      { name: "Choir voice parts", words: ["ALTO", "SOPRANO", "TENOR", "BASS"] },
+      { name: "Volleyball terms", words: ["SETTER", "LIBERO", "DIG", "SPIKE"] },
+      { name: "Programming languages I use", words: ["PYTHON", "JAVA", "R", "C"] }
+    ];
+    var grid = document.getElementById("cx-grid"), solvedEl = document.getElementById("cx-solved");
+    var msg = document.getElementById("cx-msg"), mistEl = document.getElementById("cx-mist");
+    var submit = document.getElementById("cx-submit"), clear = document.getElementById("cx-clear"), shuffleBtn = document.getElementById("cx-shuffle");
+    if (!grid) return;
+    var left = [], picked = [], mistakes = 4, done = false, guesses = [];
+    groups.forEach(function (g, gi) { g.words.forEach(function (w) { left.push({ w: w, g: gi }); }); });
+    function shuffle(a) { for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+    function drawMist() {
+      mistEl.innerHTML = "Mistakes left: ";
+      for (var i = 0; i < mistakes; i++) { var d = document.createElement("i"); d.setAttribute("aria-hidden", "true"); mistEl.appendChild(d); }
+      mistEl.setAttribute("aria-label", mistakes + " mistakes remaining");
+    }
+    function draw() {
+      grid.innerHTML = "";
+      left.forEach(function (t) {
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "cx-tile"; b.textContent = t.w;
+        b.setAttribute("aria-pressed", String(picked.indexOf(t.w) > -1));
+        b.disabled = done;
+        b.addEventListener("click", function () {
+          var i = picked.indexOf(t.w);
+          if (i > -1) picked.splice(i, 1); else if (picked.length < 4) picked.push(t.w);
+          msg.textContent = ""; draw();
+        });
+        grid.appendChild(b);
+      });
+      submit.disabled = done || picked.length !== 4;
+      clear.disabled = done || picked.length === 0;
+      shuffleBtn.disabled = done;
+      drawMist();
+    }
+    function reveal(gi) {
+      var g = groups[gi], d = document.createElement("div");
+      d.className = "cx-group cx-g" + gi;
+      d.innerHTML = "<b></b><span></span>";
+      d.querySelector("b").textContent = g.name;
+      d.querySelector("span").textContent = g.words.join(", ");
+      solvedEl.appendChild(d);
+      left = left.filter(function (t) { return t.g !== gi; });
+    }
+    submit.addEventListener("click", function () {
+      var key = picked.slice().sort().join("|");
+      if (guesses.indexOf(key) > -1) { msg.textContent = "Already guessed!"; return; }
+      guesses.push(key);
+      var counts = {};
+      picked.forEach(function (w) { var g = left.filter(function (t) { return t.w === w; })[0].g; counts[g] = (counts[g] || 0) + 1; });
+      var best = Math.max.apply(null, Object.keys(counts).map(function (k) { return counts[k]; }));
+      if (best === 4) {
+        reveal(+Object.keys(counts)[0]); picked = [];
+        msg.textContent = left.length ? "Nice!" : "Solved! You now know me slightly better than most recruiters.";
+        if (!left.length) done = true;
+      } else {
+        mistakes--;
+        msg.textContent = best === 3 ? "One away..." : "Not quite.";
+        grid.querySelectorAll("[aria-pressed=true]").forEach(function (b) { b.classList.add("shake"); });
+        if (mistakes === 0) {
+          done = true; picked = [];
+          msg.textContent = "Out of guesses. Here's how it all fits together.";
+          groups.forEach(function (g, gi) { if (left.some(function (t) { return t.g === gi; })) reveal(gi); });
+        }
+      }
+      setTimeout(draw, best === 4 || done ? 0 : 380);
+    });
+    clear.addEventListener("click", function () { picked = []; draw(); });
+    shuffleBtn.addEventListener("click", function () { shuffle(left); draw(); });
+    shuffle(left); draw();
+  })();
+
   // Toronto clock
   var clock = document.getElementById("clock");
   function tick() { try { clock.textContent = new Intl.DateTimeFormat("en-CA", { hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "America/Toronto" }).format(new Date()); } catch (e) {} }
   tick(); setInterval(tick, 20000);
 
   // Parse tree follows scroll
-  var ids = ["entry","background","experience","research","languages","life","contact"];
+  var ids = ["entry","background","experience","research","languages","life","puzzle","contact"];
   var items = Array.prototype.slice.call(document.querySelectorAll(".tree li"));
   var topLinks = Array.prototype.slice.call(document.querySelectorAll(".topbar a"));
   var prog = document.querySelector(".treewrap .prog");
