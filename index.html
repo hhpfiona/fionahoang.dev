@@ -248,6 +248,13 @@ h2 .dotsep { color: var(--accent); font-weight: 400; }
 
 
 
+/* Hero link pills */
+.hero-links { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.25rem 0 0; }
+.pill { font: 600 0.88rem var(--sans); text-decoration: none; color: var(--ink); border: 1.5px solid var(--rule); border-radius: 999px; padding: 0.35rem 0.9rem; transition: border-color .2s, color .2s, transform .2s; }
+.pill:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+.pill.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.pill.primary:hover { color: var(--bg); }
+
 /* Hobby cards */
 .hobbies { display: grid; gap: 1.5rem; }
 @media (min-width: 60rem) { .hobbies { grid-template-columns: 1fr 1fr; gap: 1.75rem; } }
@@ -355,7 +362,7 @@ h2 { background-size: 100% 100%; }
 <li data-for="contact"><a href="#contact"><span class="hw">con·tact</span><span class="pos">v.</span></a></li>
     </ol></div>
     <div class="palette" role="group" aria-label="Colour scheme"><span class="lbl">Colours</span><button type="button" data-set="espresso" aria-pressed="false" aria-label="Espresso and strawberry" title="Espresso &amp; strawberry"><span style="background:#201815"></span><span style="background:#FF8FAB"></span></button><button type="button" data-set="denim" aria-pressed="true" aria-label="Denim and tangerine" title="Denim &amp; tangerine"><span style="background:#0C1428"></span><span style="background:#FFA64D"></span></button></div>
-    <p class="status"><span class="dot" aria-hidden="true"></span>Open to work<br>Toronto, <time id="clock">--:--</time><br><a href="mailto:hhpfiona@gmail.com">hhpfiona@gmail.com</a></p>
+    <p class="status"><span class="dot" aria-hidden="true"></span>Open to work<br>Toronto, <time id="clock">--:--</time><br><a href="mailto:hhpfiona@gmail.com">hhpfiona@gmail.com</a><br><a href="https://www.linkedin.com/in/fiona-hoang">LinkedIn</a> · <a href="https://github.com/hhpfiona">GitHub</a></p>
   </aside>
 
   <main>
@@ -374,6 +381,7 @@ h2 { background-size: 100% 100%; }
           </ol>
           <p class="etym"><b>ORIGIN</b>From Vietnamese <i lang="vi">Hoàng Hạnh Phương</i>. Published as <i>Phuong Hanh Hoang</i>.</p>
           <p class="see"><b>SEE ALSO</b><a href="#experience">experience</a>, <a href="#research">research</a>, <a href="#languages">languages</a>, <a href="#life">off the clock</a>, <a href="#contact">contact</a></p>
+          <p class="hero-links"><a class="pill" href="https://www.linkedin.com/in/fiona-hoang">LinkedIn ↗</a><a class="pill" href="https://github.com/hhpfiona">GitHub ↗</a><a class="pill" href="mailto:hhpfiona@gmail.com">Email</a></p>
         </div>
         <figure class="plate hero-plate" data-cursor="look">
           <img src="img/headshot.jpg" alt="Fiona Hoang smiling, in a denim jacket" width="733" height="1100">
@@ -492,7 +500,7 @@ h2 { background-size: 100% 100%; }
       <section id="contact" aria-labelledby="contact-h">
         <div class="head"><h2 id="contact-h">con<span class="dotsep">·</span>tact</h2><span class="pos">verb</span><p class="gloss">To get in touch. Usage: highly encouraged.</p></div>
         <div class="body"><p>I'm looking for entry-level software roles, whether that's backend, infrastructure, ML or research engineering, in Toronto, remote in Canada, or further afield. If anything here caught your eye, I'd love to hear from you.</p>
-          <a class="cta" href="mailto:hhpfiona@gmail.com">Email hhpfiona@gmail.com</a><a class="cta alt" href="https://github.com/hhpfiona">GitHub ↗</a></div>
+          <a class="cta" href="mailto:hhpfiona@gmail.com">Email hhpfiona@gmail.com</a><a class="cta alt" href="https://www.linkedin.com/in/fiona-hoang">LinkedIn ↗</a><a class="cta alt" href="https://github.com/hhpfiona">GitHub ↗</a></div>
       </section>
 
       <footer><span>© 2026 Fiona Hoang</span><span>Entry last revised November 2026</span></footer>
